@@ -1,3 +1,5 @@
+Programs created to automate the creation of EtherCAT configuration files.
+
 To use the following programs on Windows/Linux, Python 3.14 with tkinter is required.
 
 Note that the parser in the XML generator has been adjusted only for Lichuan ESI.xml files due to the lack of ESI files from other manufacturers. In the future, support for a greater variety will be added.
