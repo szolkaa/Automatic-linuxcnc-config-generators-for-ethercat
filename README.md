@@ -1,3 +1,5 @@
+# Dokumentacja projektu
+
 <details>
 <summary>📑 Spis treści</summary>
 
@@ -13,9 +15,11 @@
 <details>
 <summary id="1-xml-generator">1. XML Generator</summary>
 
-Opis XML Generatora.
+### 1.1 Schemat ogólny
+![1.1](images/1.1.png)
 
-![XML](docs/images/1.1_xml_generator.png)
+### 1.2 Struktura pliku
+![1.2](images/1.2.png)
 
 </details>
 
@@ -24,9 +28,11 @@ Opis XML Generatora.
 <details>
 <summary id="2-hal-generator">2. HAL Generator</summary>
 
-Opis HAL Generatora.
+### 2.1 Logika HAL
+![2.1](images/2.1.png)
 
-![HAL](docs/images/2.1_hal_generator.png)
+### 2.2 Połączenia sygnałów
+![2.2](images/2.2.png)
 
 </details>
 
@@ -35,9 +41,11 @@ Opis HAL Generatora.
 <details>
 <summary id="3-ini-generator">3. INI Generator</summary>
 
-Opis INI Generatora.
+### 3.1 Konfiguracja osi
+![3.1](images/3.1.png)
 
-![INI](docs/images/3.1_ini_generator.png)
+### 3.2 Parametry KINS / TRAJ
+![3.2](images/3.2.png)
 
 </details>
 
@@ -46,8 +54,10 @@ Opis INI Generatora.
 <details>
 <summary id="4-dosstyle--utf-8-lf-converter">4. DosStyle → UTF-8 LF Converter</summary>
 
-Opis konwertera DosStyle → UTF-8 LF.
+### 4.1 Konwersja plików
+![4.1](images/4.1.png)
 
-![Converter](docs/images/4.1_converter.png)
+### 4.2 Wynik po konwersji
+![4.2](images/4.2.png)
 
 </details>
