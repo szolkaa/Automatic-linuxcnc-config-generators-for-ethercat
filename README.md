@@ -102,7 +102,7 @@ The master must be active before the slaves, because in EtherCAT the master perf
 
 
 
-5.2 Some Error during LinuxCNC startup
+5.2 Some Error during LinuxCNC startup           
 rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument
 lcec_conf: ERROR: couldn't allocate user/RT shared memory
 
