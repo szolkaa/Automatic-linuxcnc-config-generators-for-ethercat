@@ -99,5 +99,30 @@ And the parameters in [KINS] and [TRAJ] change dynamically and later define the 
 5.1 Operating State  
 The master must be active before the slaves, because in EtherCAT the master performs the role of synchronization and managing the communication cycle. The slaves cannot initiate transmission or synchronize with the bus on their own; they wait until the master starts the data cycle and distributes the timing. If the master is not active, the slaves will be in a waiting or error state, because they will not receive the reference clock or control commands. In many cases, re-initialization will not occur. Therefore, powering on the slaves or connecting the cable with already powered slaves should properly happen after starting the LinuxCNC GUI.
 
+5.2 Some Error during LinuxCNC startup
+rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument
+lcec_conf: ERROR: couldn't allocate user/RT shared memory
+
+check shared memory: ipcs -m
+Fild locket segment and delate: sudo ipcrm -m 32812
+
+Example:
+k@k:~$ ipcs -m
+------ Shared Memory Segments --------
+key        shmid      owner      perms      bytes      nattch     status      
+0x00000000 32775      k          600        4194304    2          dest         
+0x00000000 10         k          600        524288     2          dest         
+0x00000000 15         k          600        524288     2          dest         
+0x00000000 17         k          600        524288     2          dest         
+0x00000000 19         k          600        4194304    2          dest         
+0x00000000 32793      k          600        524288     2          dest         
+0x00000000 28         k          600        1048576    2          dest         
+0x00000000 360481     k          600        524288     2          dest         
+0x00000000 294947     k          600        524288     2          dest         
+0x00000000 262182     k          600        524288     2          dest         
+0xacb572c7 32812      k          600        2644       0          locked      
+0x00000000 55         k          600        524288     2          dest         
+0x00000000 59         k          600        524288     2          dest         
+0x00000000 62         k          600        524288     2          dest 
 
 </details>
