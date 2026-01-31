@@ -69,13 +69,13 @@ The machine moves within a closed space, and homing in this configuration is int
 
 3.2.Gantry mode   
 In other words, using two motors in one plane.
-After switching to gantry mode, the following arrangement is created: 
-1 : 1                                            Gantry
-Axis X → joint.0                       Axis X → joint.0
- Axis Y → joint.1                       Axis Y → joint.1 , joint.2
- Axis Z → joint.2                      Axis Z →  joint.3
-Axis A → joint.3
-And the parameters in [KINS] and [TRAJ] change dynamically and later define the recognition of the mode by LinuxCNC during loading. 
+After switching to gantry mode, the following arrangement is created:        
+1 : 1                                            Gantry        
+Axis X → joint.0                       Axis X → joint.0        
+ Axis Y → joint.1                       Axis Y → joint.1 , joint.2      
+ Axis Z → joint.2                      Axis Z →  joint.3        
+Axis A → joint.3        
+And the parameters in [KINS] and [TRAJ] change dynamically and later define the recognition of the mode by LinuxCNC during loading.   
 ![3.2](images/3.2.png)
 
 3.3.Save INI   
