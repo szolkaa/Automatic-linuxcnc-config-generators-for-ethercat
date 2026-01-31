@@ -1,6 +1,6 @@
 To use the following programs on Windows/Linux, Python 3.14 with tkinter is required.
 
-Note that the parser in the XML generator has been adjusted for the Lichuan ESI.xml file. In the future, greater variety will be added.
+Note that the parser in the XML generator has been adjusted only for the Lichuan ESI.xml files due to the lack of ESI files from other manufacturers. In the future, greater variety will be added.
 
 Last stege Proposed configuration in ini generator and also 3 homing Cutom joints in hal generator is for absolute encoders with use of softlimits therefore before using automatic configuration, proper installation of the [CIA402 homing component](https://github.com/rodw-au/cia402_homecomp) is required.
 
