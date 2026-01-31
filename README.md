@@ -1,5 +1,3 @@
-# Dokumentacja projektu
-
 <details>
 <summary>📑 Spis treści</summary>
 
@@ -15,19 +13,22 @@
 <details>
 <summary id="1-xml-generator">1. XML Generator</summary>
 
-### 1.1
+1.1 Load the .xml ESI file from the manufacturer.
 ![1.1](images/1.1.png)
 
-### 1.2
+1.2 Replace the names of the HAL pins (PDO). 
+It replaces the name modes of operation → opmode and a few others; all pin names can be found in the servodriver manual. 
 ![1.2](images/1.2.png)
 
-### 1.3
+1.3 Reduce PDOs to CSP essential.
+Keeps the first output group and the first input PDO, keeps essential PDOs for CSP mode; if you want to use CSV mode, target velocity is kept instead of target position. The text can be edited manually. 
 ![1.3](images/1.3.png)
 
-### 1.4
+1.4 Duplicate the slave.
+Each click duplicates the text </slave... </slave> and increments the slave index in numerical order. 
 ![1.4](images/1.4.png)
 
-### 1.5
+1.5 Save Xml
 ![1.5](images/1.5.png)
 
 </details>
