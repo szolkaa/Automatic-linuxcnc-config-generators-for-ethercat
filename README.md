@@ -1,4 +1,4 @@
-tekst
+To use the following programs on Windows/Linux, Python 3.14 with tkinter is required. 
 <details>
 <summary id="1-xml-generator">1. XML Generator</summary>
 
