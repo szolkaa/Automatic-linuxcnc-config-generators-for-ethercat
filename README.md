@@ -91,6 +91,9 @@ And the parameters in [KINS] and [TRAJ] change dynamically and later define the 
 
 </details>
 <details>
+
+---
+ 
 <summary Some Ethercat Solutions</summary>
 5.1 Operating State
 The master must be active before the slaves, because in EtherCAT the master performs the role of synchronization and managing the communication cycle. The slaves cannot initiate transmission or synchronize with the bus on their own; they wait until the master starts the data cycle and distributes the timing. If the master is not active, the slaves will be in a waiting or error state, because they will not receive the reference clock or control commands. In many cases, re-initialization will not occur. Therefore, powering on the slaves or connecting the cable with already powered slaves should properly happen after starting the LinuxCNC GUI.
