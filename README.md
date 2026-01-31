@@ -16,7 +16,7 @@
 <summary id="1-xml-generator">1. XML Generator</summary>
 
 ### 1.1 Schemat ogólny
-![1.1](images/1.1.png)
+![1.1](/Automatic-linuxcnc-config-generators-for-ethercat/images/1.1.png)
 
 ### 1.2 Struktura pliku
 ![1.2](images/1.2.png)
