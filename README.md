@@ -1,6 +1,6 @@
 To use the following programs on Windows/Linux, Python 3.14 with tkinter is required.
 
-Last stege Proposed configuration in INI generator is for absolute encoders with use of softlimits therefore before using automatic ini configuration, proper installation of the CIA402 homing component is required.
+Last stege Proposed configuration in ini generator and also 3 homing Cutom joints in hal generator is for absolute encoders with use of softlimits therefore before using automatic configuration, proper installation of the [CIA402 homing component](https://github.com/rodw-au/cia402_homecomp) is required.
 
 <details>
 <summary id="1-xml-generator">1. XML Generator</summary>
