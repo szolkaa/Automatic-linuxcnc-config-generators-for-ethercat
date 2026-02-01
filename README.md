@@ -103,17 +103,17 @@ The master must be active before the slaves, because in EtherCAT the master perf
 
 ![5.1](images/5.1.png)
 
+  
+5.2 Some Error during LinuxCNC startup               
+rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
+lcec_conf: ERROR: couldn't allocate user/RT shared memory   
+  
+check shared memory: ipcs -m         
+Fild locket segment and delate: sudo ipcrm -m 32812      
 
-5.2 Some Error during LinuxCNC startup           
-rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument
-lcec_conf: ERROR: couldn't allocate user/RT shared memory
-
-check shared memory: ipcs -m
-Fild locket segment and delate: sudo ipcrm -m 32812
-
-Example:
-k@k:~$ ipcs -m
------- Shared Memory Segments --------
+Example:  
+k@k:~$ ipcs -m  
+------ Shared Memory Segments --------    
 key        shmid      owner      perms      bytes      nattch     status      
 0x00000000 32775      k          600        4194304    2          dest         
 0x00000000 10         k          600        524288     2          dest         
