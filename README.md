@@ -14,7 +14,7 @@ Last stege Proposed configuration in ini generator and also 3 homing Cutom joint
 ![1.1](images/1.1.png)
 
 1.2 Replace the names of the HAL pins (PDO).    
-It replaces the name modes of operation → opmode and a few others; all pin names can be found in the servodriver manual. 
+It replaces the name modes of operation → opmode and a few others; all pin names can be found in the servodriver manual for example: fixed pdo mapping chapter, 6000 group object dictionary. 
 ![1.2](images/1.2.png)
 
 1.3 Reduce PDOs to CSP essential.   
