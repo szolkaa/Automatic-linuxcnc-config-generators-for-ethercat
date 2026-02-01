@@ -1,0 +1,83 @@
+# ==========================================
+# AUTO GENERATED HAL – FULL PDO SUPPORT
+# ==========================================
+
+loadrt [KINS]KINEMATICS
+loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS
+loadusr -W lcec_conf ethercat-conf.xml
+loadrt cia402 count=3
+loadrt lcec
+
+addf lcec.read-all servo-thread
+addf cia402.0.read-all servo-thread
+addf cia402.1.read-all servo-thread
+addf cia402.2.read-all servo-thread
+addf motion-command-handler servo-thread
+addf motion-controller servo-thread
+addf cia402.0.write-all servo-thread
+addf cia402.1.write-all servo-thread
+addf cia402.2.write-all servo-thread
+addf lcec.write-all servo-thread
+
+setp iocontrol.0.emc-enable-in 1
+
+# -------- AXIS X / joint.0 / cia402.0 / slave.1 --------
+setp cia402.0.pos-scale 1677721.6
+setp cia402.0.csp-mode 1
+
+net X-pos-cmd joint.0.motor-pos-cmd => cia402.0.pos-cmd
+net X-pos-fb cia402.0.pos-fb => joint.0.motor-pos-fb
+net X-enable joint.0.amp-enable-out => cia402.0.enable
+net X-amp-fault cia402.0.drv-fault => joint.0.amp-fault-in
+net X-custom-home joint.0.request-custom-homing => cia402.0.home
+net X-is-custom-homing cia402.0.stat-homing => joint.0.is-custom-homing
+net X-custom-home-done cia402.0.stat-homed => joint.0.custom-homing-finished
+
+net X-control-word cia402.0.controlword => lcec.0.1.control-word
+net X-target-position cia402.0.drv-target-position => lcec.0.1.target-position
+net X-opmode cia402.0.opmode => lcec.0.1.opmode
+net X-actual-position cia402.0.drv-actual-position => lcec.0.1.actual-position
+net X-actual-velocity cia402.0.drv-actual-velocity => lcec.0.1.actual-velocity
+net X-opmode-display cia402.0.opmode-display => lcec.0.1.opmode-display
+net X-status-word lcec.0.1.status-word => cia402.0.statusword
+
+# -------- AXIS Y / joint.1 / cia402.1 / slave.2 --------
+setp cia402.1.pos-scale 1677721.6
+setp cia402.1.csp-mode 1
+
+net Y-pos-cmd joint.1.motor-pos-cmd => cia402.1.pos-cmd
+net Y-pos-fb cia402.1.pos-fb => joint.1.motor-pos-fb
+net Y-enable joint.1.amp-enable-out => cia402.1.enable
+net Y-amp-fault cia402.1.drv-fault => joint.1.amp-fault-in
+net Y-custom-home joint.1.request-custom-homing => cia402.1.home
+net Y-is-custom-homing cia402.1.stat-homing => joint.1.is-custom-homing
+net Y-custom-home-done cia402.1.stat-homed => joint.1.custom-homing-finished
+
+net Y-control-word cia402.1.controlword => lcec.0.2.control-word
+net Y-target-position cia402.1.drv-target-position => lcec.0.2.target-position
+net Y-opmode cia402.1.opmode => lcec.0.2.opmode
+net Y-actual-position cia402.1.drv-actual-position => lcec.0.2.actual-position
+net Y-actual-velocity cia402.1.drv-actual-velocity => lcec.0.2.actual-velocity
+net Y-opmode-display cia402.1.opmode-display => lcec.0.2.opmode-display
+net Y-status-word lcec.0.2.status-word => cia402.1.statusword
+
+# -------- AXIS Z / joint.2 / cia402.2 / slave.3 --------
+setp cia402.2.pos-scale 1677721.6
+setp cia402.2.csp-mode 1
+
+net Z-pos-cmd joint.2.motor-pos-cmd => cia402.2.pos-cmd
+net Z-pos-fb cia402.2.pos-fb => joint.2.motor-pos-fb
+net Z-enable joint.2.amp-enable-out => cia402.2.enable
+net Z-amp-fault cia402.2.drv-fault => joint.2.amp-fault-in
+net Z-custom-home joint.2.request-custom-homing => cia402.2.home
+net Z-is-custom-homing cia402.2.stat-homing => joint.2.is-custom-homing
+net Z-custom-home-done cia402.2.stat-homed => joint.2.custom-homing-finished
+
+net Z-control-word cia402.2.controlword => lcec.0.3.control-word
+net Z-target-position cia402.2.drv-target-position => lcec.0.3.target-position
+net Z-opmode cia402.2.opmode => lcec.0.3.opmode
+net Z-actual-position cia402.2.drv-actual-position => lcec.0.3.actual-position
+net Z-actual-velocity cia402.2.drv-actual-velocity => lcec.0.3.actual-velocity
+net Z-opmode-display cia402.2.opmode-display => lcec.0.3.opmode-display
+net Z-status-word lcec.0.3.status-word => cia402.2.statusword
+
