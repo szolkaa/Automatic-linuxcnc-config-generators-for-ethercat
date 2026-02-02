@@ -316,7 +316,6 @@ Reset any errors on the servo drivers if they occur, according to the user manua
 Then check:    
 ```sudo ethercat master```     
 ```sudo ethercat slaves```     
-```sudo ethtool -i eth0```   
 ```uname -a```   
 ```latency-histogram```    
      
