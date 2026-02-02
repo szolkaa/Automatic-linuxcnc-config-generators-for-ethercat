@@ -420,6 +420,11 @@ After starting the program, the Ethernet cable can be connected and the servos p
 </details>    
   
 
+</details>
+
+---
+
+</details>
 
 
 
