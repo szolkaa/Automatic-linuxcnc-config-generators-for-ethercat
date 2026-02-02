@@ -1,4 +1,4 @@
-# 1.Programs created to automate the creation of EtherCAT configuration files.
+# 1. Programs created to automate the creation of EtherCAT configuration files.
 
      
 To use the following programs on Windows/Linux, Python 3.14 with tkinter is required. Then Open with …Phyton. 
@@ -133,7 +133,7 @@ key        shmid      owner      perms      bytes      nattch     status
 ***
 
 
-# 2.From LinuxCNC 2.9.8 Debian 13 Installation via IGH EtherCat Master to the First Motor Movement    
+# 2. From LinuxCNC 2.9.8 Debian 13 Installation via IGH EtherCat Master to the First Motor Movement    
         
       
  
