@@ -279,8 +279,7 @@ Then fill in
  DEVICE_MODULES="generic"     
    
 And save and close.     
-*If the drivers for your network card include EtherCAT Master, e.g., Intel i210, they will be used automatically even in generic mode.    
-At the end of this EtherCAT Master configuration stage, you can check the type of driver used.        
+       
          
 3.2 First EtherCAT startup, step by step:        
 ```sudo systemctl enable ethercat.service```        
