@@ -131,3 +131,297 @@ key        shmid      owner      perms      bytes      nattch     status
 0x00000000 62         k          600        524288     2          dest 
 
 </details>
+
+
+
+
+
+# From LinuxCNC 2.9.8 Debian 13 Installation via IGH EtherCat Master to the First Motor Movement    
+        
+      
+ 
+<details>   
+<summary id="1.-LinuxCNC-Installation">1. LinuxCNC Installation</summary>    
+  
+    
+1.1 The installation applies to LinuxCNC 2.9.8 Debian 13 Trixie      
+Download the image:        
+https://www.linuxcnc.org/iso/linuxcnc_2.9.8-amd64.hybrid.iso     
+Mount the ISO to a pendrive, e.g., using the Rufus program    
+      
+1.2 If Linux will be a second system, you can first create unallocated space on the disk in Windows:       
+- Press Win + X and select Disk Management.    
+- Shrink the partition (if you want to keep data)   
+- In the Disk Management window, find the partition you want to shrink.    
+- Right-click it and select Shrink Volume.      
+- Enter by how many MB you want to shrink the partition     
+– that much space will become unallocated.   
+Click Shrink.     
+         
+1.3 Change the boot order in BIOS to set the pendrive as first.    
+After booting from the pendrive, select install LinuxCNC   
+Manual disk selection     
+Partition selection: one EFI system partition is required, a swap partition 4–16 GB, and an ext4 partition with the mount point /     
+Use as: EFI system partition     
+Use as: swap partition 4–16 GB       
+Use as: ext4 partition with mount point /     
+*If the EFI partition already exists, select use as system partition and do not format.   
+*The EFI partition must contain a Debian entry for the system to boot from the disk    
+     
+1.4 If GRUB does not want to install, choose Finish without a bootloader   
+However, in this situation, leave the pendrive so that Linux can boot again.   
+And select at the top: Live LinuxCNC   
+To install GRUB via the Internet   
+     
+1.5 In Live Linux    
+connect to the Internet via the toolbar.    
+     
+![b1.5](images/b1.5.png)      
+     
+Then open the terminal and enter the following commands in order to enable downloading via the Internet:    
+    
+```sudo cp /etc/resolv.conf /mnt/etc/resolv.conf```    
+```sudo mount --bind /etc/resolv.conf /mnt/etc/resolv.conf```    
+Check the Internet:    
+```ping -c 3 deb.debian.org```    
+    
+1.6 Mounting and operating on system partitions to add an entry to EFI    
+Check the partitions:     
+lsblk -f    
+
+![b1.6](images/b1.6.png)        
+   
+Mount the EFI partition and the /ext4 partition by their names, in this case:    
+```sudo mount /dev/nvme0n1p7 /mnt/```           Partition /EXT4     
+```sudo mount /dev/nvme0n1p1 /mnt/boot/efi```   Partition  EFI      
+        
+Mount the system directories in order:    
+```sudo mount --bind /dev  /mnt/dev```    
+```sudo mount --bind /proc /mnt/proc```    
+```sudo mount --bind /sys  /mnt/sys```    
+```sudo mount --bind /run  /mnt/run```    
+    
+Now GRUB installation:    
+Enter Debian (chroot)      
+```sudo chroot /mnt```     
+The prompt should appear as: root@debian:/#     
+     
+Install GRUB       
+```sudo apt update```      
+```sudo apt install grub-efi-amd64 efibootmgr```       
+      
+Install GRUB to EFI:     
+```sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Debian```     
+     
+Optional, Generate the menu    
+```sudo update-grub``` 
+         
+Exit and clean up   
+```exit```    
+```sudo umount -R /mnt```     
+```reboot```    
+     
+Now the entry in EFI (/boot/efi/EFI/Debian/) has already been created, Linux will boot normally.     
+End of installation – remove the pendrive; at startup, you can access the boot manager by pressing, e.g., F7, depending on the BIOS.           
+</details>    
+       
+<details>     
+<summary id="2.-Preparing-the-System-for-EtherCAT">2. Preparing the System for EtherCAT</summary>    
+     
+2.1 Start the system     
+2.2 Network card configuration     
+Click on the network settings in the top right corner.     
+Change the first 2 tabs, disable the rest    
+     
+![b2.2](images/b2.2.png)  
+    
+![b2.3](images/b2.3.png) 
+     
+2.3 Disable NETWORKMANAGER for the network card so that EtherCAT has exclusive access.     
+Find the name of the card:            
+```ip link```   
+     
+![b2.1](images/b2.1.png)     
+    
+Disable the Manager, replace eth1 with your own card name:     
+```sudo nmcli device set eth1 managed no```    
+Check if it has been disabled:       
+```nmcli device status```     
+          
+2.4 System update         
+```sudo apt update```     
+```sudo apt upgrade```   
+Continue? [Y/n] y    
+               
+2.5 Git installation       
+```sudo apt update```     
+```sudo apt install git```     
+```git --version```    
+         
+</details>    
+    
+<details>      
+<summary id="3.-IGH-EtherCAT-Master-Installation">3. IGH EtherCAT Master Installation</summary>     
+      
+   Preparing the system for EtherCAT     
+         
+```sudo apt update```     
+```sudo apt install  linuxcnc-ethercat```     
+     
+3.1 Check the MAC address of the network card     
+```ip a```     
+Then fill in     
+ ```sudo geany /etc/ethercat.conf```     
+      
+ MASTER0_DEVICE=""    
+ DEVICE_MODULES="generic"     
+   
+And save and close.     
+*If the drivers for your network card include EtherCAT Master, e.g., Intel i210, they will be used automatically even in generic mode.    
+At the end of this EtherCAT Master configuration stage, you can check the type of driver used.        
+         
+3.2 First EtherCAT startup, step by step:        
+```sudo systemctl enable ethercat.service```        
+```sudo systemctl start ethercat.service```       
+```sudo systemctl status ethercat.service```       
+```sudo chmod 666 /dev/EtherCAT0```       
+      
+3.3 Grant permission for EtherCAT Master at system startup         
+```sudo geany /etc/udev/rules.d/99-ethercat.rules```          
+Paste:        
+```KERNEL=="EtherCAT[0-9]", MODE="0777"```        
+Save and close.       
+       
+Restart the computer       
+      
+</details>    
+      
+<details>    
+            
+<summary id="4.-Install-Cia402.comp">4. Install Cia402.comp</summary>     
+        
+```mkdir -p ~/dev```      
+```cd ~/dev```     
+```git clone https://github.com/dbraun1981/hal-cia402```        
+```cd hal-cia402```      
+```sudo halcompile --install cia402.comp```   
+         
+       
+At this stage, you can connect the EK1100 and the servo drivers with the servos to power, connect to the network card:    
+Reset any errors on the servo drivers if they occur, according to the user manual.   
+Then check:    
+```sudo ethercat master```     
+```sudo ethercat slaves```     
+```sudo ethtool -i eth0```   
+```uname -a```   
+```latency-histogram```    
+     
+ ![b4.2](images/b4.2.png)     
+        
+After testing     
+If the servo drivers are in the PREOP state, you can de-energize them:       
+ ```sudo ethercat states INIT```      
+ and turn off the power         
+   
+ </details>    
+  
+<details>       
+      
+<summary id="5.-Custom-Homing-Installation">5. Custom Homing Installation</summary>     
+  
+   
+Install LinuxCNC source repositories      
+```git clone https://github.com/LinuxCNC/linuxcnc.git linuxcnc-dev```        
+    
+then copy homecomp:   
+```cd ~/dev```      
+```git clone https://github.com/rodw-au/cia402_homecomp```      
+     
+5.1 Now you need to replace one line.     
+Without terminal Browse through the folders and find this file:     
+/home/..../linuxcnc-dev/src/emc/motion/homing.c And copy its exact path      
+     
+       
+Then enter the folder /home/dev/cia402_homecomp,     
+      
+![b5.1](images/b5.1.png)    
+     
+Open the file cia402_homecomp.comp     
+      
+Find this line and replace it with your own path      
+#define HOMING_BASE home/..../linuxcnc-dev/src/emc/motion/homing.c          
+and save      
+        
+Open a new terminal and enter:     
+```cd ~/dev/cia402_homecomp```     
+       
+```sudo halcompile --install cia402_homecomp.comp```     
+     
+At a later stage, make sure that such an entry exists in the INI file    
+[EMCMOT]      
+HOMEMOD = cia402_homecomp      
+     
+End    
+At this stage, all necessary components have been installed       
+   
+ </details>   
+     
+<details>     
+     
+<summary id="6.-Starting-LinuxCNC-GUI">6. Starting LinuxCNC GUI</summary>     
+           
+Enter in the terminal:    
+```linuxcnc```     
+Open the simulation, e.g., SIM Axis      
+This will create the folders where we will copy the configuration.    
+Close it    
+      
+Create your own configuration using generators or copy a ready-made one for Lichuan LC-E servos     
+e.g., from my GitHub    
+https://github.com/szolkaa/Automatic-linuxcnc-config-generators-for-ethercat    
+Enter the folder linuxcnc/config/          
+Paste the entire configuration folder containing the hal, ini, and xml files there.    
+      
+Before the first LinuxCNC startup, you can check if the memory segments are clean.    
+To avoid such errors:      
+rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument      
+lcec_conf: ERROR: couldn't allocate user/RT shared memory      
+         
+```ipcs -m```      
+If any of them have a locked status, remove it by entering (the number corresponding to the shmid column):        
+```sudo ipcrm -m 32812```     
+          
+![b6.2](images/b6.2.png)      
+.    
+.     
+.       
+. ...........................................................................................  
+.       
+.       
+.    
+.         
+Alright, let’s start:          
+```linuxcnc```      
+Choose a config…   
+      
+After starting the program, the Ethernet cable can be connected and the servos powered on.     
+      
+![b6](images/b6.png)       
+    
+  
+----------------------
+    
+</details>    
+  
+
+
+
+
+
+
+
+
+
+
+
+
