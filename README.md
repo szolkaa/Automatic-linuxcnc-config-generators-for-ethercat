@@ -199,23 +199,24 @@ Mount the system directories in order:
 ```sudo mount --bind /run  /mnt/run```    
     
 Now GRUB installation:    
-Enter Debian (chroot)      
+Enter Debian (ch root)      
 ```sudo chroot /mnt```     
 The prompt should appear as: root@debian:/#     
      
 Install GRUB       
-```sudo apt update```      
-```sudo apt install grub-efi-amd64 efibootmgr```       
+```apt update```      
+```apt install grub-efi-amd64 efibootmgr```       
       
 Install GRUB to EFI:     
-```sudo grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Debian```     
+```grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=Debian```     
      
 Optional, Generate the menu    
-```sudo update-grub``` 
+```update-grub``` 
          
 Exit and clean up   
 ```exit```    
-```sudo umount -R /mnt```     
+```sudo umount -R /mnt```  
+      
 ```reboot```    
      
 Now the entry in EFI (/boot/efi/EFI/Debian/) has already been created, Linux will boot normally.     
