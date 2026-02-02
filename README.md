@@ -291,10 +291,11 @@ At the end of this EtherCAT Master configuration stage, you can check the type o
 3.3 Grant permission for EtherCAT Master at system startup         
 ```sudo geany /etc/udev/rules.d/99-ethercat.rules```          
 Paste:        
-```KERNEL=="EtherCAT[0-9]", MODE="0777"```        
-Save and close.       
-       
-Restart the computer       
+```KERNEL=="EtherCAT[0-9]", MODE="0777"```         
+Save and close.    
+then type    
+```sudo udevadm control --reload-rules```         
+Restart the computer        
       
 </details>    
 
