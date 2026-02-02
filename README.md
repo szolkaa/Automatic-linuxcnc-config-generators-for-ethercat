@@ -220,6 +220,8 @@ Exit and clean up
 Now the entry in EFI (/boot/efi/EFI/Debian/) has already been created, Linux will boot normally.     
 End of installation – remove the pendrive; at startup, you can access the boot manager by pressing, e.g., F7, depending on the BIOS.           
 </details>    
+
+---
        
 <details>     
 <summary id="2.-Preparing-the-System-for-EtherCAT">2. Preparing the System for EtherCAT</summary>    
@@ -255,7 +257,9 @@ Continue? [Y/n] y
 ```git --version```    
          
 </details>    
-    
+
+---
+
 <details>      
 <summary id="3.-IGH-EtherCAT-Master-Installation">3. IGH EtherCAT Master Installation</summary>     
       
@@ -291,6 +295,8 @@ Save and close.
 Restart the computer       
       
 </details>    
+
+---
       
 <details>    
             
@@ -319,7 +325,9 @@ If the servo drivers are in the PREOP state, you can de-energize them:
  ```sudo ethercat states INIT```      
  and turn off the power         
    
- </details>    
+</details>    
+
+---
   
 <details>       
       
@@ -360,7 +368,9 @@ HOMEMOD = cia402_homecomp
 End    
 At this stage, all necessary components have been installed       
    
- </details>   
+</details>   
+
+---
      
 <details>     
      
