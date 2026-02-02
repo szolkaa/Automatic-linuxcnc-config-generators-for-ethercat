@@ -1,11 +1,9 @@
 # Programs created to automate the creation of EtherCAT configuration files.
 
-    
-<details>
-
+---
 To use the following programs on Windows/Linux, Python 3.14 with tkinter is required. Then Open with …Phyton. 
-  
-</details>
+---
+
 <details>
 <summary id="1-xml-generator">1. XML Generator</summary>
 
