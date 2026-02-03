@@ -162,7 +162,7 @@ Partition selection: one EFI system partition is required, a swap partition 4–
 Use as: EFI system partition     
 Use as: swap partition 4–16 GB       
 Use as: ext4 partition with mount point /     
-*If you have a Legacy BIOS, the system installs using the disk's MBR, and no EFI partition is created
+*If you have a Legacy BIOS, the system installs using the disk's MBR, and no EFI partition is created         
 *If the EFI partition already exists, select use as system partition and do not format.   
 *The EFI partition must contain a Debian entry for the system to boot from the disk    
      
