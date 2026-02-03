@@ -162,6 +162,7 @@ Partition selection: one EFI system partition is required, a swap partition 4–
 Use as: EFI system partition     
 Use as: swap partition 4–16 GB       
 Use as: ext4 partition with mount point /     
+*If you have a Legacy BIOS, the system installs using the disk's MBR, and no EFI partition is created
 *If the EFI partition already exists, select use as system partition and do not format.   
 *The EFI partition must contain a Debian entry for the system to boot from the disk    
      
@@ -220,7 +221,34 @@ Exit and clean up
 ```reboot```    
      
 Now the entry in EFI (/boot/efi/EFI/Debian/) has already been created, Linux will boot normally.     
-End of installation – remove the pendrive; at startup, you can access the boot manager by pressing, e.g., F7, depending on the BIOS.           
+End of installation – remove the pendrive; at startup, you can access the boot manager by pressing, e.g., F7, depending on the BIOS.     
+
+*If it's a Legacy BIOS, the commands are as follows:    
+Mount the / partition (EXT4) by its device name, in this case:     
+```sudo mount /dev/nvme0n1p7 /mnt```      
+
+Bind the system directories one by one:    
+```sudo mount --bind /dev  /mnt/dev```    
+```sudo mount --bind /proc /mnt/proc```     
+```sudo mount --bind /sys  /mnt/sys```     
+```sudo mount --bind /run  /mnt/run```      
+    
+Enter Debian (ch root)      
+```sudo chroot /mnt```      
+    
+Install GRUB to the MBR of the entire disk (replace nvme0n1 with your disk's device name):         
+```apt update && apt install -y grub-pc && grub-install /dev/nvme0n1 && update-grub```       
+      
+      
+Optionally, regenerate the GRUB menu:              
+```update-grub```    
+Exit and clean up                       
+```exit```    
+```sudo umount -R /mnt```     
+```reboot```     
+     
+</details>    
+
 </details>    
 
 ---
