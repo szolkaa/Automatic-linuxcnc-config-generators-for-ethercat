@@ -486,7 +486,7 @@ After starting the program, the Ethernet cable can be connected and the servos p
 It is still possible to use the HAL and INI generators with a fixed ethercat-conf.xml.
 
 *Last stege Proposed configuration in ini generator and also 3 homing Cutom joints in hal generator is for absolute encoders with use of softlimits therefore before using automatic configuration, proper installation of the CIA402 homing component is required.
-
+Then the homing works on the principle of Feedback mirroring – pos_fb reflects pos_cmd.
 
 
 
