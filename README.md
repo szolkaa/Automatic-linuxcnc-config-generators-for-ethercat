@@ -243,9 +243,9 @@ Find the name of the card:
      
 ![b2.1](images/b2.1.png)     
     
-Disable the Manager, replace eth1 with your own card name:     
-```sudo nmcli device set eth1 managed no```    
-Check if it has been disabled:       
+Disable the Manager, replace enp3s0 with your own card name:     
+```sudo nmcli device set enp3s0 managed no```    
+Check if it has been unmenaged:       
 ```nmcli device status```     
           
 2.4 System update         
