@@ -263,7 +263,7 @@ Continue? [Y/n] y
 ---
 
 <details>      
-<summary id="3.-IGH-EtherCAT-Master-Installation">3. IGH EtherCAT Master Installation</summary>     
+<summary id="3.-EtherCAT-Master-Installation">3. EtherCAT Master Installation</summary>     
       
    Preparing the system for EtherCAT     
          
@@ -328,7 +328,7 @@ If the servo drivers are in the PREOP state, you can de-energize them:
      
 <summary id="5. Connecting network card to EtherCAT master">5. Connecting network card to EtherCAT master</summary>   
      
-The network card can be connected to the IGH EtherCAT master if it is recognized by it.      
+The network card can be connected to the EtherCAT master if it is recognized by it.      
 Supported cards are mainly Intel with the igb  igc 1000 or 1000e driver.       
 This ensures greater compatibility with real-time operations and allows the card to work exclusively under the control of EtherCAT.     
        
