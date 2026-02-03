@@ -133,7 +133,7 @@ key        shmid      owner      perms      bytes      nattch     status
 ***
 
 
-# 2. From LinuxCNC 2.9.8 Debian 13 Installation via IGH EtherCat Master to the First Motor Movement    
+# 2. From LinuxCNC 2.9.8 Debian 13 Installation via EtherCat Master to the First Motor Movement    
         
       
  
