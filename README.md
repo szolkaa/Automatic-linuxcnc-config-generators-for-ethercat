@@ -305,7 +305,7 @@ Restart the computer
      
 <summary id="4. Connecting servo drivers">4. Connecting servo drives</summary>           
        
-At this stage, you can connect the EK1100 and the servo drivers with the servos to power, connect to the network card:    
+At this stage, you can connect the EK1100 and the servo drivers to power, connect to the network card:    
 Reset any errors on the servo drivers if they occur, according to the user manual.   
 Then check:    
 ```sudo ethercat master```     
