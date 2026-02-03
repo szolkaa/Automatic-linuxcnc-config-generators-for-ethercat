@@ -374,7 +374,7 @@ If not, return to ethercat.conf and save generic again.
 <details> 
    
             
-<summary id="6.-Install-Cia402.comp">6. Install Cia402.comp</summary>     
+<summary id="6.-Cia402.comp-Installation">6. Cia402.comp Installation</summary>     
         
 ```mkdir -p ~/dev```      
 ```cd ~/dev```     
