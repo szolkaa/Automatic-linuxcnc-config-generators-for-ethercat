@@ -175,13 +175,7 @@ To install GRUB via the Internet
 connect to the Internet via the toolbar.    
      
 ![b1.5](images/b1.5.png)      
-     
-Then open the terminal and enter the following commands in order to enable downloading via the Internet:    
-    
-```sudo cp /etc/resolv.conf /mnt/etc/resolv.conf```    
-```sudo mount --bind /etc/resolv.conf /mnt/etc/resolv.conf```    
-Check the Internet:    
-```ping -c 3 deb.debian.org```    
+         
     
 1.6 Mounting and operating on system partitions to add an entry to EFI    
 Check the partitions:     
@@ -190,7 +184,9 @@ lsblk -f
 ![b1.6](images/b1.6.png)        
    
 Mount the EFI partition and the /ext4 partition by their names, in this case:    
-```sudo mount /dev/nvme0n1p7 /mnt/```           Partition /EXT4     
+```sudo mkdir -p /mnt```       
+```sudo mount /dev/nvme0n1p7 /mnt/```           Partition /EXT4   
+```sudo mkdir -p /mnt/boot/efi```         
 ```sudo mount /dev/nvme0n1p1 /mnt/boot/efi```   Partition  EFI      
         
 Mount the system directories in order:    
@@ -198,6 +194,12 @@ Mount the system directories in order:
 ```sudo mount --bind /proc /mnt/proc```    
 ```sudo mount --bind /sys  /mnt/sys```    
 ```sudo mount --bind /run  /mnt/run```    
+
+ Bind internet to partitions:      
+```sudo mkdir -p /mnt/etc```      
+```sudo mount --bind /etc/resolv.conf /mnt/etc/resolv.conf```       
+Check internet:      
+```ping -c 3 deb.debian.org```  
     
 Now GRUB installation:    
 Enter Debian (ch root)      
@@ -225,6 +227,7 @@ End of installation – remove the pendrive; at startup, you can access the boot
 
 *If it's a Legacy BIOS, the commands are as follows:    
 Mount the / partition (EXT4) by its device name, in this case:     
+```sudo mkdir -p /mnt```
 ```sudo mount /dev/nvme0n1p7 /mnt```      
 
 Bind the system directories one by one:    
@@ -232,7 +235,11 @@ Bind the system directories one by one:
 ```sudo mount --bind /proc /mnt/proc```     
 ```sudo mount --bind /sys  /mnt/sys```     
 ```sudo mount --bind /run  /mnt/run```      
-    
+
+Bind internet to partition:     
+```sudo mkdir -p /mnt/etc```    
+```sudo mount --bind /etc/resolv.conf /mnt/etc/resolv.conf```     
+       
 Enter Debian (ch root)      
 ```sudo chroot /mnt```      
     
