@@ -485,7 +485,7 @@ If any of them have a locked status, remove it by entering (the number correspon
 ![b6.2](images/b6.2.png)      
 .    
 .     
-.       
+. 'Restart computer'      
 . ...........................................................................................  
 .       
 .       
