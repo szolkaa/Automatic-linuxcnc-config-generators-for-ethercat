@@ -168,8 +168,10 @@ Use as: ext4 partition with mount point /
      
 1.4 If GRUB does not want to install, choose Finish without a bootloader   
 However, in this situation, leave the pendrive so that Linux can boot again.   
-And select at the top: Live LinuxCNC   
-To install GRUB via the Internet   
+And select at the top: Live System   
+   
+For BIOS UEFI:      
+To install GRUB via the Internet        
      
 1.5 In Live Linux    
 connect to the Internet via the toolbar.    
