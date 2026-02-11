@@ -531,7 +531,7 @@ Jog mode without Home Axis is intended only for safely retracting, for example, 
         
 Before installing the motors, homing to 0 must be performed.       
          
-Open the MDI tab [F5]:     
+Open tab MDI[F5]:     
 ```G53 G0 Z0```      
 then:       
 ```G53 G0 X0 Y0```        
