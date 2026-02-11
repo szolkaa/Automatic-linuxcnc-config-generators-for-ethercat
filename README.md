@@ -525,9 +525,10 @@ In the custom homing component configuration, the Machine Coordinate System (MCS
 When two motors operate together in the same plane, before homing in jog mode they should be set to the same encoder position—preferably each at 0.00,        
 because the second motor Y2, will try to drastically align its position with the first Y.     
 Only after that, Home Axis should be activated.     
-     
-It should also be remembered not to operate without Home Axis, because the soft limits are disabled and it is possible to move beyond the allowed area up to the first physical obstacle.     
-Jog mode without Home Axis is intended only for safely retracting, for example, a tool from the material workspace.       
+       
+```It should also be remembered not to operate without Home Axis,```    
+because the soft limits are disabled and it is possible to move beyond the allowed area up to the first physical obstacle.        
+Jog mode without Home Axis is intended only for safely retracting, for example, a tool from the material workspace.        
         
 Before installing the motors, homing to 0 must be performed.       
          
