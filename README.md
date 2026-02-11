@@ -548,9 +548,29 @@ MIN_LIMIT = -545    or:  MIN_LIMIT = 0
 MAX_LIMIT = 0            MAX_LIMIT = 545        
 ```      
       
-    
+
+</details>   
+
+--- 
+       
+<details>        
+         
+<summary id=10. Work Coordinate System (WCS>10. Work Coordinate System (WCS</summary>           
+       
+WCS G54 is a work coordinate system set relative to the workpiece.      
+It allows you to define the workpiece zero point (0,0,0) and perform tool movements relative to it.       
+The same point is defined in the CAM program; usually, the corner, center, or a hole on the top surface of the raw material is chosen.      
+      
+The basic method for defining the workpiece zero point is to directly position the tool tip in the X and Y planes above the physical material at the location specified in the CAM program,      
+and then move the Z axis downward.       
+Sometimes a small gap between the tool and the surface is used, e.g., using a sheet of paper, and the paper thickness is taken into account during the touch off.       
+      
+For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis positions to the WCS.       
+       
+      
+       
             
-</details>      
+</details>        
     
   
 ***
