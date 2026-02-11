@@ -567,7 +567,7 @@ Sometimes a small gap between the tool and the surface is used, e.g., using a sh
       
 For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis positions to the WCS.       
        
-      
+![wcs](images/wcs.png)         
        
             
 </details>        
