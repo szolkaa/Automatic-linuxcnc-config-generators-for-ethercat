@@ -532,11 +532,11 @@ Jog mode without Home Axis is intended only for safely retracting, for example, 
 Before installing the motors, homing to 0 must be performed.       
          
 Open the MDI tab [F5]:     
-G53 G0 Z0      
+```G53 G0 Z0```      
 then:       
-G53 G0 X0 Y0        
+```G53 G0 X0 Y0```        
 or:       
-G53 G0 X0 Y0 Z0       
+```G53 G0 X0 Y0 Z0```       
      
           
 The easiest way is to turn the nut on the screw close to one end, and when the encoder is at position 0, connect the ball screw to the motor.       
