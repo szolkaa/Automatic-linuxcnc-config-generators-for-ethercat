@@ -555,7 +555,7 @@ MAX_LIMIT = 0            MAX_LIMIT = 545
        
 <details>        
          
-<summary id=10. Work Coordinate System (WCS>10. Work Coordinate System (WCS</summary>           
+<summary id=10. Work Coordinate System (WCS)>10. Work Coordinate System (WCS)</summary>           
        
 WCS G54 is a work coordinate system set relative to the workpiece.      
 It allows you to define the workpiece zero point (0,0,0) and perform tool movements relative to it.       
