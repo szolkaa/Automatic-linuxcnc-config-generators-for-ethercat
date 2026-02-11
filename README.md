@@ -511,9 +511,47 @@ After starting the program, the Ethernet cable can be connected and the servos p
   
 ----------------------
     
-</details>    
-  
 
+</details>
+
+---
+    
+<details>     
+     
+<summary id="9-machine-coordinate-system">9. Machine Coordinate System (MCS)</summary>    
+ *          
+             
+In the custom homing component configuration, the Machine Coordinate System (MCS, G53) is established and based on the value 0 of each absolute encoder in the motor.    
+If two motors are to work together in the same plane before homing, in jog mode they should be set to the same encoder position—preferably each at 0.00,        
+because the second motor Y2, will try to drastically align its position with the first Y.     
+Only then should you click Home Axis.     
+     
+It should also be remembered not to operate without Home Axis, because the soft limits are disabled and it is possible to move beyond the allowed area up to the first physical obstacle.     
+Jog mode without Home Axis is intended only for safely retracting, for example, a tool from the material workspace.       
+        
+Before installing the motors, homing to 0 must be performed.       
+         
+Open the MDI tab [F5]:     
+G53 G0 Z0      
+then:       
+G53 G0 X0 Y0        
+or:       
+G53 G0 X0 Y0 Z0       
+     
+          
+The easiest way is to turn the nut on the screw close to one end, and when the encoder is at position 0, connect the ball screw to the motor.       
+Then measure how much safe travel remains to the end of the screw,      
+and set these values in the INI file, depending on the direction of the screw, for example:        
+```      
+MIN_LIMIT = -545    or:  MIN_LIMIT = 0       
+MAX_LIMIT = 0            MAX_LIMIT = 545        
+```      
+      
+    
+            
+</details>      
+    
+  
 ***
 
 
