@@ -544,8 +544,8 @@ The easiest way is to turn the nut on the screw close to one end, and when the e
 Then measure how much safe travel remains to the end of the screw,      
 and set these values in the INI file, depending on the direction of the screw, for example:        
 ```      
-MIN_LIMIT = -545    or:  MIN_LIMIT = 0       
-MAX_LIMIT = 0            MAX_LIMIT = 545        
+MIN_LIMIT = -545    or:  MIN_LIMIT = -1       
+MAX_LIMIT = 1            MAX_LIMIT = 545        
 ```      
       
 
