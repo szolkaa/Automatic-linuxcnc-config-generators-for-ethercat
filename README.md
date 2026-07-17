@@ -569,7 +569,7 @@ For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis po
        
 ![wcs](images/wcs.png)         
        
-            
+***            
 </details>        
     
 # 3. Lichuan Guide.    
@@ -635,7 +635,7 @@ SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT
 
 
   
-***
+
 
 
 
