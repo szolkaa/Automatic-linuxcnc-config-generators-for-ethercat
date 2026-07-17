@@ -629,10 +629,12 @@ A relay is required for the servo motor brake, for example: PHOENIX CONTACT 2903
 The connection path is as shown in the manual:     
 FIRST CIRCUIT: 24V+ POWER SUPPLY --> RELAY INPUT 11 --> RELAY OUTPUT 14 --> + SERVO BRAKE --> - SERVO BRAKE --> POWER SUPPLY 0V-     
 SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT A1 --> RELAY OUTPUT A2 --> POWER SUPPLY 0V-      
+
+![breake](images/breake.jpeg)            
+
    
 </details>            
    
-![breake](images/breake.jpeg)         
  
 ***
 
