@@ -569,8 +569,9 @@ For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis po
        
 ![wcs](images/wcs.png)         
        
-***            
-</details>        
+          
+</details>  
+***     
     
 # 3. Lichuan Guide.    
     
