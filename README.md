@@ -632,7 +632,7 @@ SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT
    
 </details>            
    
-      
+![breake](images/breake.jpeg)         
  
 ***
 
@@ -643,7 +643,7 @@ SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT
 
 
 
-*Note that the parser in the XML generator has been adjusted only for Lichuan ESI.xml files due to the lack of ESI files from other manufacturers. In the future, support for a greater variety will be added.
+*Note that the parser in the XML generator has been adjusted only for Lichuan ESI.xml files due to the lack of ESI files from other manufacturers.
 It is still possible to use the HAL and INI generators with a fixed ethercat-conf.xml.
 
 *Last stege Proposed configuration in ini generator and also 3 homing Cutom joints in hal generator is for absolute encoders with use of softlimits therefore before using automatic configuration, proper installation of the CIA402 homing component is required.      
