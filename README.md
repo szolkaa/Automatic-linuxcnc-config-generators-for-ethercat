@@ -570,14 +570,15 @@ For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis po
 ![wcs](images/wcs.png)         
        
           
-</details>  
----      
-***            
+</details>         
+   
+---   
+         
+        
+<details>            
     
 # 3. Lichuan Guide.    
-    
-       
-<details>           
+              
             
 <summary id=1. Basic Servo Drive Commands>1. Basic Servo Drive Commands</summary>                
     
