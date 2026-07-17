@@ -540,7 +540,7 @@ or:
 ```G53 G0 X0 Y0 Z0```       
      
           
-The easiest way is to turn the nut on the screw close to one end, and when the encoder is at position 0, connect the ball screw to the motor.       
+The easiest way is to reset absoulte encoder position directly on servodrive settings according to manual or turn the nut on the screw close to one end, and when the encoder is at position 0, connect the ball screw to the motor.       
 Then measure how much safe travel remains to the end of the screw,      
 and set these values in the INI file, depending on the direction of the screw, for example:        
 ```      
@@ -572,7 +572,7 @@ For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis po
             
 </details>        
     
-# 1. Lichuan Guide.    
+# 3. Lichuan Guide.    
     
        
 <details>           
@@ -599,7 +599,7 @@ Absolute Encoder reset or error 731
 Reset fault and zero the encoder     
 ```P0D.20 =2``` , along with ```P0D.01 = 1```          
         
-When using different servo motors on the same drive or changing settings, communication problems may occur. In this case, the status of parameter P00.00 should be checked;    
+When using different servo motors on the same drive or random changing settings, communication problems may occur. In this case, the status of parameter P00.00 should be checked;    
 entering the motor number may be attempted.         
 1.7. ```P00.00 = 22061``` or ```P00.00 = 22060``` If it does not work, the initial value should be entered.         
          
