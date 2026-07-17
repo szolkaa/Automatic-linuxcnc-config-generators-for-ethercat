@@ -650,7 +650,7 @@ It is still possible to use the HAL and INI generators with a fixed ethercat-con
 
 *Last stege Proposed configuration in ini generator and also 3 homing Cutom joints in hal generator is for absolute encoders with use of softlimits therefore before using automatic configuration, proper installation of the CIA402 homing component is required.     
 Then the homing works on the principle of Feedback mirroring – 'pos_fb' reflects 'pos_cmd'.        
-It is also possible to run motors with incremental encoders on proposed configuration without absolute features.
+It is also possible to run motors with incremental encoders on proposed configuration just without absolute features.
 
 
 
