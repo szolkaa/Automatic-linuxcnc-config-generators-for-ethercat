@@ -572,6 +572,68 @@ For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis po
             
 </details>        
     
+# 1. Lichuan Guide.    
+    
+       
+<details>           
+            
+<summary id=1. Basic Servo Drive Commands>1. Basic Servo Drive Commands</summary>                
+    
+1.1.Fault reset     
+```P0D.01 = 1```     
+
+1.2. Encoder type selection      
+If the absolute position is not read after restart:           
+```P02.01 = 0```   incremental encoder,   
+``` P02.01 = 1```   absolute encoder             
+        
+Used only when needed / clears all settings:      
+1.3. Software reset           
+```P0D.00 = 1```          
+1.4. Parameter initialization     
+```P02.31 = 1```       
+          
+Absolute Encoder reset or error 731    
+1.5.  reset fault          
+```P0D.20 =1```        
+Reset fault and zero the encoder     
+```P0D.20 =2``` , along with ```P0D.01 = 1```          
+        
+When using different servo motors on the same drive or changing settings, communication problems may occur. In this case, the status of parameter P00.00 should be checked;    
+entering the motor number may be attempted.         
+1.7. ```P00.00 = 22061``` or ```P00.00 = 22060``` If it does not work, the initial value should be entered.         
+         
+            
+</details>         
+   
+---   
+         
+        
+<details>        
+           
+<summary id=2. Digital inputs/outputs DO/DI>2. Digital inputs/outputs DO/DI</summary>     
+    
+    
+
+2.1. Digital inputs/outputs DO/DI      
+DI/DO ports are electronic control inputs and outputs for signal flow: DI receives a signal from an external circuit,     
+while DO enables or disables current flow in the connected circuit according to the state set by the servo drive.       
+    
+2.2. The brake is released during the servo enable time 88rn, or by directly supplying 24V power to the brake coil.     
+Connecting the servo motor brake through DO2A/DO2B: set ```P04.04 = 9```     
+A relay is required for the servo motor brake, for example: PHOENIX CONTACT 2903370      
+       
+The connection path is as shown in the manual:     
+FIRST CIRCUIT: 24V+ POWER SUPPLY --> RELAY INPUT 11 --> RELAY OUTPUT 14 --> + SERVO BRAKE --> - SERVO BRAKE --> POWER SUPPLY 0V-     
+SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT A1 --> RELAY OUTPUT A2 --> POWER SUPPLY 0V-      
+   
+</details>            
+   
+      
+ 
+***
+
+
   
 ***
 
