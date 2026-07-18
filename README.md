@@ -542,8 +542,8 @@ or:
           
 The easiest way is to reset absoulte encoder position directly on servodrive settings according to manual or turn the nut on the screw close to one end, and when the encoder is at position 0, connect the ball screw to the motor.     
          
- set in hal file resolution and desired movement direction of the screw by adding '-' to each joint, for example:    
-```setp cia402.0.pos-scale 1677721.6``` or setp ```cia402.0.pos-scale -1677721.6```          
+ Set in hal file resolution and desired movement direction of the screw by adding '-' to each joint, for example:    
+```setp cia402.0.pos-scale 1677721.6``` or ```setp cia402.0.pos-scale -1677721.6```          
     
 Then measure how much safe travel remains to the end of the screw, and set these values in the INI file, depending on the direction of the screw, for example:         
 ```      
