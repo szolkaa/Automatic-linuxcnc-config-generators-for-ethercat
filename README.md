@@ -623,7 +623,7 @@ DI/DO ports are electronic control inputs and outputs for signal flow: DI receiv
 while DO enables or disables current flow in the connected circuit according to the state set by the servo drive.       
     
 2.2. The brake is released during the servo enable time 88rn, or by directly supplying 24V power to the brake coil.     
-Connecting the servo motor brake through DO2A/DO2B: set ```P04.04 = 9```     
+Connecting the servo motor brake through DO2A/DO2B: set ```P04.04 = 9```  then servodriver will adopts a breake behavor for DO2A/DO2B.  
 A relay is required for the servo motor brake, for example: PHOENIX CONTACT 2903370      
        
 The connection path is as shown in the manual:     
