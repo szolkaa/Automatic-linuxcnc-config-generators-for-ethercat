@@ -625,7 +625,7 @@ entering the motor number may be attempted.
 
 2.1. Digital inputs/outputs DO/DI      
 DI/DO ports are electronic control inputs and outputs for signal flow: DI receives a signal from an external circuit,     
-while DO enables or disables current flow in the connected circuit according to the state set by the servo drive.       
+while DO enables or disables current flow e.g. between DO2A and DO2B in the connected circuit according to the state set by the servo drive.       
     
 2.2. The brake is released during the servo enable time 88rn, or by directly supplying 24V power to the brake coil.     
 Connecting the servo motor brake through DO2A/DO2B: set ```P04.04 = 9```  then servodriver will adapts a breake behavor for DO2A/DO2B.  
