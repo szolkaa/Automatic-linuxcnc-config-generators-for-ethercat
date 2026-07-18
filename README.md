@@ -530,7 +530,7 @@ Only after that, Home Axis should be activated.
 because the soft limits are disabled and it is possible to move beyond the allowed area up to the first physical obstacle.        
 Jog mode without Home Axis is intended only for safely retracting, for example, a tool from the material workspace.        
         
-Before installing the motors, homing to 0 must be performed.       
+Before installing the motors, homing to 0 or reseting absolute encoder to 0 must be performed .       
          
 Open tab MDI[F5]:     
 ```G53 G0 Z0```      
@@ -540,14 +540,16 @@ or:
 ```G53 G0 X0 Y0 Z0```       
      
           
-The easiest way is to reset absoulte encoder position directly on servodrive settings according to manual or turn the nut on the screw close to one end, and when the encoder is at position 0, connect the ball screw to the motor.       
-Then measure how much safe travel remains to the end of the screw,      
-and set these values in the INI file, depending on the direction of the screw, for example:        
+The easiest way is to reset absoulte encoder position directly on servodrive settings according to manual or turn the nut on the screw close to one end, and when the encoder is at position 0, connect the ball screw to the motor.     
+         
+ set in hal file resolution and desired movement direction of the screw by adding '-' to each joint, for example:    
+setp cia402.0.pos-scale 1677721.6 or setp cia402.0.pos-scale -1677721.6   
+    
+Then measure how much safe travel remains to the end of the screw, and set these values in the INI file, depending on the direction of the screw, for example:         
 ```      
-MIN_LIMIT = -545    or:  MIN_LIMIT = -1       
-MAX_LIMIT = 1            MAX_LIMIT = 545        
-```      
-      
+  MIN_LIMIT = -1       
+ MAX_LIMIT = 545
+```
 
 </details>   
 
