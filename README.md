@@ -601,10 +601,13 @@ Absolute Encoder reset or error 731
 ```P0D.20 =1```        
 Reset fault and zero the encoder     
 ```P0D.20 =2``` , along with ```P0D.01 = 1```          
-        
+
+
+
+the servodriver is capable to run two servomotors at the same time.        
 When using different servo motors on the same drive or random changing settings, communication problems may occur. In this case, the status of parameter P00.00 should be checked;    
 entering the motor number may be attempted.         
-1.7. ```P00.00 = 22061``` or ```P00.00 = 22060``` If it does not work, the initial value should be entered.         
+1.7. ```P00.00 = 22061``` or ```P00.00 = 22060``` If it does not work, the initial value should be entered back.         
          
             
 </details>         
