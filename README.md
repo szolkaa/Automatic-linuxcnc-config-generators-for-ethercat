@@ -670,7 +670,39 @@ SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT
 
    
 </details>            
+
    
+---   
+         
+        
+<details>        
+           
+<summary id=3. tuning parameters</summary>    
+  
+       
+The firmware appears to be incomplete in terms of the position-loop functionality required for CSP mode.    
+     
+All self-tuning parameters in section P09 appear to be present in the parameter list,      
+without the corresponding functionality actually working.      
+         
+     
+However, the following parameters can still be configured manually:    
+P08.15 – Load Inertia Ratio    
+Default value: 1    
+safe value: 2    
+   
+P08.19 – Speed Feedforward Gain    
+Default value: 1   
+Recommended value: 100    
+   
+P09.01 – Rigidity Level Selection   
+Default value: 12   
+Recommended range for belt-driven systems: 8–15   
+Recommended range for ball-screw-driven systems: 15–20   
+   
+  
+     
+</details>   
  
 ***
 
