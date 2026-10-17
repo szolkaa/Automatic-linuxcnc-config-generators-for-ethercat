@@ -31,6 +31,10 @@ Each click duplicates the text </slave... </slave> and increments the slave inde
 
 <details>
 <summary id="2-hal-generator">2. HAL Generator</summary>
+2.0 Choose between CSV and CSP mode       
+ 
+![2.0](images/2.0.png)
+
 
 2.1 Load ethercat-conf.xml   
 After loading ethercat-conf.xml, all PDOs available in the selected file will appear, and in the HAL generation window on the right side, the configuration initialization section will appear.
