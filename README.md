@@ -103,9 +103,29 @@ And the parameters in [KINS] and [TRAJ] change dynamically and later define the 
 The master must be active before the slaves, because in EtherCAT the master performs the role of synchronization and managing the communication cycle. The slaves cannot initiate transmission or synchronize with the bus on their own; they wait until the master starts the data cycle and distributes the timing. If the master is not active, the slaves will be in a waiting or error state, because they will not receive the reference clock or control commands. In many cases, re-initialization will not occur. Therefore, powering on the slaves or connecting the cable with already powered slaves should properly happen after starting the LinuxCNC GUI.
 
 ![5.1](images/5.1.png)
-
-  
-5.2 Some Error during LinuxCNC startup               
+5.2 Choosing Between CSV and CSP Mode          
+          
+CSP: LinuxCNC commands position, and the position loop runs on the drive                
+LinuxCNC (PID in HAL or directly in the trajectory planner) sends the target position to the drive at every cycle.        
+The drive runs its own velocity and current loops, and often also a position loop,       
+depending on the implementation (some drives in CSP mode receive only the target position and add their own position controller, which can be enhanced with feed-forward).        
+ Positioning stiffness and accuracy depend mainly on the drive.        
+The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
+Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or poorly implemented firmware in the servo drive          
+Tuning is performed in the servo drive or the manufacturer's software, not in HAL.     
+The following error is calculated on the drive side, and LinuxCNC only sees it indirectly.     
+   
+   
+CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC         
+The position loop is implemented as a PID controller in LinuxCNC (pid.N.command = commanded position, feedback = encoder position received via PDO, output = commanded velocity sent as the target velocity).     
+The drive handles only the velocity and current loops.       
+ Full control over tuning in HAL (P, I, D, velocity FF1, acceleration FF2, bias, deadband, and integral limits).       
+You can easily add filters, compensations, etc. With drives that have a poor or unknown position loop, this often produces better results.       
+Disadvantages is performance depends on servo-thread jitter and communication delays (a 1 ms EtherCAT cycle is typical, which is relatively slow compared with the 8–20 kHz loop running in the drive).        
+These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.       
+   
+   
+5.3 Some Error during LinuxCNC startup               
 rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
 lcec_conf: ERROR: couldn't allocate user/RT shared memory   
   
