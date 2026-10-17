@@ -115,7 +115,8 @@ depending on the implementation (some drives in CSP mode receive only the target
 The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
 Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or poorly implemented firmware in the servo drive          
 Tuning is performed in the servo drive or the manufacturer's software, not in HAL.     
-The following error is calculated on the drive side, and LinuxCNC only sees it indirectly.     
+The following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
+Without any tuning, the following error can be several millimeters.
    
    
 CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC         
@@ -127,9 +128,10 @@ You can easily add filters, compensations, etc.
 With drives that have a poor or unknown position loop, this often produces better results.       
 Disadvantages is performance depends on servo-thread jitter and communication delays        
 (a 1 ms EtherCAT cycle is typical, which is relatively slow compared with the 8–20 kHz loop running in the drive).        
-These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.       
-   
-   
+These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.           
+However, by choosing CSV mode, the following error can reach satisfactory values of around 0.02 mm at its peak, without any tuning at all.        
+    
+    
 5.3 Some Error during LinuxCNC startup               
 rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
 lcec_conf: ERROR: couldn't allocate user/RT shared memory   
