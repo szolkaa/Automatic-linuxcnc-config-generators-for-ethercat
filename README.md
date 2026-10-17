@@ -43,7 +43,7 @@ Among others, in this line: "loadusr -W lcec_conf ethercat-conf.xml", the PDOs f
 ![2.1](images/2.1.png)
 
 2.2. load cia402.comp   
-The .comp file is parsed into pins and parameters; most of the suggested pins are automatically matched. The pos_scale value should be selected based on the encoder and the stroke per revolution
+The .comp file is parsed into pins and parameters; most of the suggested pins are automatically matched. The pos_scale value should be selected based on the encoder and the stroke per revolution. Additionally, in CSV mode, velo_scale is active and usually has the same value as pos_scale although this is not a universal rule and depends on the specific servo drive and scaling configuration.      
 ![2.2](images/2.2.png)
 
 2.3. Axis selection    
