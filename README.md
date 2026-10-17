@@ -14,8 +14,8 @@ To use the following programs on Windows/Linux, Python 3.14 with tkinter is 
 It replaces the name modes of operation → opmode and a few others; all pin names can be found in the servodriver manual for example: fixed pdo mapping chapter, 6000 group object dictionary. 
 ![1.2](images/1.2.png)
 
-1.3 Reduce PDOs to CSP essential.   
-Keeps the first output group and the first input PDO, keeps essential PDOs for CSP mode; if you want to use CSV mode, target velocity is kept instead of target position. The text can be edited manually. 
+1.3 Reduce PDOs to CSV or CSP essential.   
+Keeps the first output group and the first input PDO, keeps essential PDOs for CSV or CSP mode; in CSV mode target velocity is kept instead of target position for CSP. The text can be edited manually. 
 ![1.3](images/1.3.png)
 
 1.4 Duplicate the slave.   
