@@ -673,11 +673,11 @@ SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT
 
    
 ---   
-         
+ <summary id=1. Basic Servo Drive Commands>1. Basic Servo Drive Commands</summary>          
         
 <details>        
            
-<summary id=3. tuning parameters</summary>    
+<summary id=3. tuning parameters>3. tuning parameters</summary>    
   
        
 The firmware appears to be incomplete in terms of the position-loop functionality required for CSP mode.    
