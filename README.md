@@ -673,7 +673,7 @@ SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT
 
    
 ---   
- <summary id=1. Basic Servo Drive Commands>1. Basic Servo Drive Commands</summary>          
+              
         
 <details>        
            
