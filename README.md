@@ -109,8 +109,9 @@ The master must be active before the slaves, because in EtherCAT the master perf
 CSP: LinuxCNC commands position, and the position loop runs on the drive                
 LinuxCNC (PID in HAL or directly in the trajectory planner) sends the target position to the drive at every cycle.        
 The drive runs its own velocity and current loops, and often also a position loop,       
-depending on the implementation (some drives in CSP mode receive only the target position and add their own position controller, which can be enhanced with feed-forward).        
- Positioning stiffness and accuracy depend mainly on the drive.        
+depending on the implementation (some drives in CSP mode receive only the target position and add their own position controller, which can be enhanced with feed-forward).    
+ Positioning stiffness and accuracy depend mainly on the drive.    
+           
 The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
 Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or poorly implemented firmware in the servo drive          
 Tuning is performed in the servo drive or the manufacturer's software, not in HAL.     
@@ -121,8 +122,11 @@ CSV: LinuxCNC commands velocity, and the position loop runs in the PID controlle
 The position loop is implemented as a PID controller in LinuxCNC (pid.N.command = commanded position, feedback = encoder position received via PDO, output = commanded velocity sent as the target velocity).     
 The drive handles only the velocity and current loops.       
  Full control over tuning in HAL (P, I, D, velocity FF1, acceleration FF2, bias, deadband, and integral limits).       
-You can easily add filters, compensations, etc. With drives that have a poor or unknown position loop, this often produces better results.       
-Disadvantages is performance depends on servo-thread jitter and communication delays (a 1 ms EtherCAT cycle is typical, which is relatively slow compared with the 8–20 kHz loop running in the drive).        
+You can easily add filters, compensations, etc.  
+    
+With drives that have a poor or unknown position loop, this often produces better results.       
+Disadvantages is performance depends on servo-thread jitter and communication delays        
+(a 1 ms EtherCAT cycle is typical, which is relatively slow compared with the 8–20 kHz loop running in the drive).        
 These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.       
    
    
