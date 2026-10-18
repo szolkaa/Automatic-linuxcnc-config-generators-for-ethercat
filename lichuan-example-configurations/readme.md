@@ -19,7 +19,7 @@ These changes are supposed to be cosmetic only.
 The halPin attribute (e.g., halPin="control-word") is used to link ethercat-conf.xml with the HAL file.           
 Therefore, its value should not be modified becouse must match the corresponding current signal name in the HAL configuration.          
        
- or might connect servodives to linux and compere index numbers and 0 slave number    
+ or might connect servodives to linux and compere index numbers    
 1. Check detected EtherCAT slaves     
 ```sudo ethercat slaves```       
      
