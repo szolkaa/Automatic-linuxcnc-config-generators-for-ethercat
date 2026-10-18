@@ -16,7 +16,8 @@ pdoEntry idx="6040" bitLen="16"
 Rewiew and Modify these values accordingly for all objects.    
 These changes are supposed to be cosmetic only.    
   
-The halPin attribute (e.g., halPin="control-word") is used to link ethercat-conf.xml with the HAL file.           
+The ```halPin``` attribute (e.g., halPin="control-word") ```is exclusively used to link ethercat-conf.xml with the HAL file```.
+   
 Therefore, its value should not be modified becouse must match the corresponding current signal name in the HAL configuration.          
        
  or might connect servodives to linux and compere index numbers    
