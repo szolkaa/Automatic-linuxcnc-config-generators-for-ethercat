@@ -692,7 +692,7 @@ Default value: 1
 safe value: 2    
    
 P08.19 – Speed Feedforward Gain    
-Default value: 1   
+Default value: 0   
 Recommended value: 100    
    
 P09.01 – Rigidity Level Selection   
