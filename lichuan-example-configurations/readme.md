@@ -1,3 +1,5 @@
+
+ <div align="left">
  To use the following configurations with servo drives other than Lichuan,           
 only the ethercat-conf.xml file needs to be reviewed and adjusted according to the manual or ESI file provided by the servo drive manufacturer.    
 Compare the corresponding index numbers.    
@@ -32,4 +34,4 @@ Therefore, its value should not be modified becouse must match the corresponding
    
 5. Display EtherCAT master information       
 ```sudo ethercat master```     
-       
+ </div>      
