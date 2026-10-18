@@ -84,7 +84,7 @@ The machine moves within a closed space, and homing in this configuration is int
 (linuxcnc-dev, cia402_homecomp.comp, cia402_homecomp.h, basecomp.comp) 
 It is also possible to use incremental encoders without absolute features.
 
-However, servos with absolute encoders are more universal, as you can switch between incremental and absolute modes usually by changing just one parameter on servodrive.
+However, servos with absolute encoders are more universal, as you can switch between incremental and absolute modes ****usually by changing just one parameter on servodrive.
 
 ![3.1](images/3.1.png)
 
