@@ -7,20 +7,9 @@ To use the following programs on Windows/Linux, Python 3.14 with tkinter is 
 <details>
 <summary id="1-xml-generator">1. XML Generator</summary>
 
- Load the .xml ESI file from the manufacturer.   
+1.1 Load the .xml ESI file from the manufacturer.   
 ![1.1](images/1.1.png)
-*****     
-**1.1. If the servo drives are manufactured by a company other than Lichuan, it may be possible to use the Lichuan ESI file. Refer to the manual or ESI file provided by your servo drive manufacturer and compare the corresponding index numbers:    
     
-* Vendor ID.   vid="00000766"pid="00000402"    
-* Object Group Number.   
-pdo idx="1600"    
-* Object number.  
-pdoEntry idx="6040" bitLen="16"    
-also <slave idx="0" type="EK1100"/>    Modify these values accordingly for the objects you are interested in.   
-
-These changes are supposed to be cosmetic only.    
-*****    
 
 1.2 Replace the names of the HAL pins (PDO).    
 It replaces the name modes of operation → opmode and a few others; all pin names can be found in the servodriver manual for example: fixed pdo mapping chapter, 6000 group object dictionary. 
@@ -34,7 +23,22 @@ Keeps the first output group and the first input PDO, keeps essential PDOs for C
 Each click duplicates the text </slave... </slave> and increments the slave index in numerical order. 
 ![1.4](images/1.4.png)
 
-1.5 Save Xml                              
+1.5 Save Xml      
+
+*****     
+**1.6 If the servo drives are manufactured by a company other than Lichuan, it may be possible to use the Lichuan ESI file to create ethercat-conf.xml  then Refer to the manual or ESI file provided by your servo drive manufacturer and compare the corresponding index numbers:   
+    
+* Vendor ID.   vid="00000766"pid="00000402"    
+* Object Group Number.   
+pdo idx="1600"    
+* Object number.  
+pdoEntry idx="6040" bitLen="16"    
+also <slave idx="0" type="EK1100"/>    Modify these values accordingly for the objects you are interested in.   
+
+These changes are supposed to be cosmetic only.    
+
+or take complete configuration and seek for changes only in ethercat-conf.xml
+*****
 ![1.5](images/1.5.png)
 
 </details>
