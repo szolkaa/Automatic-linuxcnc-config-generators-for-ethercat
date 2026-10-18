@@ -32,8 +32,8 @@ Each click duplicates the text </slave... </slave> and increments the slave inde
 * Object Group Number.   
 pdo idx="1600"    
 * Object number.  
-pdoEntry idx="6040" bitLen="16"    
-also <slave idx="0" type="EK1100"/>    Modify these values accordingly for the objects you are interested in.   
+pdoEntry idx="6040" bitLen="16"      
+also slave idx="0" type="EK1100"      Modify these values accordingly for the objects you are interested in.   
 
 These changes are supposed to be cosmetic only.    
 
