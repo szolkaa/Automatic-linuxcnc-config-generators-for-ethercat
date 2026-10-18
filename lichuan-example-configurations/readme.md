@@ -18,17 +18,17 @@ The halPin attribute (e.g., halPin="control-word") is used to link ethercat-conf
 Therefore, its value should not be modified becouse must match the corresponding current signal name in the HAL configuration.          
    
  or might connect servodives to linux and compere index numbers and 0 slave number
-# 1. Check detected EtherCAT slaves
+1. Check detected EtherCAT slaves
 ```sudo ethercat slaves```
 
-# 2. Display PDOs for all slaves
+ 2. Display PDOs for all slaves
 ```sudo ethercat pdos```
 
-# 3. Display PDOs for a specific slave, e.g. position 0
+3. Display PDOs for a specific slave, e.g. position 0
 ```sudo ethercat pdos -p 0```
 
-# 4. Display SDO objects for a specific slave
+4. Display SDO objects for a specific slave
 ```sudo ethercat sdos -p 0```
 
-# 5. Display EtherCAT master information
+5. Display EtherCAT master information
 ```sudo ethercat master```
