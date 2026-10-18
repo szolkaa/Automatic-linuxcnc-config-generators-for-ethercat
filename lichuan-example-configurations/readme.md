@@ -26,11 +26,11 @@ Therefore, its value should not be modified becouse must match the corresponding
  2. Display PDOs for all slaves     
 ```sudo ethercat pdos```       
      
-3. Display PDOs for a specific slave, e.g. position 0    
-```sudo ethercat pdos -p 0```   
+3. Display PDOs for a specific slave, e.g. position 1    
+```sudo ethercat pdos -p 1```   
        
 4. Display SDO objects for a specific slave       
-```sudo ethercat sdos -p 0```     
+```sudo ethercat sdos -p 1```     
    
 5. Display EtherCAT master information       
 ```sudo ethercat master```     
