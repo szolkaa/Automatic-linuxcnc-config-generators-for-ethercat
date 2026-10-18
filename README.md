@@ -115,8 +115,8 @@ depending on the implementation (some drives in CSP mode receive only the target
 The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
 Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or poorly implemented firmware in the servo drive          
 Tuning is performed in the servo drive or the manufacturer's software, not in HAL.     
-The following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
-Without any tuning, the following error can be several millimeters.
+The  following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
+Without any tuning, the joint.0.f-error can be several millimeters.
    
    
 CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC         
