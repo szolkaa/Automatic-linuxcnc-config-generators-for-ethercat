@@ -83,13 +83,14 @@ Here it is similar, except that the file is only analyzed. The program checks wh
 The machine moves within a closed space, and homing in this configuration is intended for absolute encoders , which most often use soft limits [MIN_LIMIT] [MAX_LIMIT] often without the use of physical limit switch inputs and I/O modules. For this reason, before using automatic configuration, proper installation of the CIA402 homing component is required.
 (linuxcnc-dev, cia402_homecomp.comp, cia402_homecomp.h, basecomp.comp)    
 
-*****    
+
+![3.1](images/3.1.png)
+
+ *****    
 It is also possible to use incremental encoders without absolute features.
 
 However, servos with absolute encoders are more universal, as you can switch between incremental and absolute modes ****usually by changing just one parameter on servodrive.
-*****     
-![3.1](images/3.1.png)
-
+*****         
 3.2.Gantry mode   
 In other words, using two motors in one plane.
 After switching to gantry mode, the following arrangement is created:        
