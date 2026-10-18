@@ -5,12 +5,14 @@ Compare the corresponding index numbers.
 Vendor ID. vid="00000766"pid="00000402"  
  also slave idx="0" type="EK1100"
          
-Object Group Numbers    
+Object Group Numbers e.g.   
 pdo idx="1600"    
-Object numbers     
+Object numbers e.g.    
 pdoEntry idx="6040" bitLen="16"
        
     
 Rewiew and Modify these values accordingly for all objects.    
 These changes are supposed to be cosmetic only.    
+
+The halPin attribute (e.g., halPin="control-word") is used to link ethercat-conf.xml with the HAL file. Therefore, its value should not be modified and must match the corresponding signal name in the HAL configuration.
    
