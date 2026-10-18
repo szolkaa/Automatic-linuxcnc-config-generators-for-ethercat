@@ -1,7 +1,7 @@
 
  <div align="left">
- To use the following configurations with servo drives other than Lichuan,           
-only the  ```ethercat-conf.xml```  file needs to be reviewed and adjusted according to the manual or ESI file provided by the servo drive manufacturer.    
+ To use the following configurations with servo drives other than Lichuan,               
+only the  ```ethercat-conf xml```  file needs to be reviewed and adjusted according to the manual or ESI file provided by the servo drive manufacturer.    
 Compare the corresponding index numbers.    
     
 Vendor ID. vid="00000766"pid="00000402"  
