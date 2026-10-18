@@ -680,9 +680,9 @@ SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT
 <summary id=3. tuning parameters>3. tuning parameters</summary>    
   
        
-The firmware appears to be incomplete in terms of the position-loop functionality required for CSP mode.    
-     
-All self-tuning parameters in section P09 appear to be present in the parameter list,      
+The firmware appears to be incomplete in terms self-tuning for P08 paraparameters group needed for CSP mode,    
+
+section P09.00 appear to be present in the parameter list,      
 without the corresponding functionality actually working.      
          
      
