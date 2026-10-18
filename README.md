@@ -87,9 +87,8 @@ The machine moves within a closed space, and homing in this configuration is int
 ![3.1](images/3.1.png)
 
  *****    
-It is also possible to use incremental encoders without absolute features.
+It is also possible to use incremental encoders and running without absolute features.
 
-However, servos with absolute encoders are more universal, as you can switch between incremental and absolute modes ****usually by changing just one parameter on servodrive.
 *****         
 3.2.Gantry mode   
 In other words, using two motors in one plane.
