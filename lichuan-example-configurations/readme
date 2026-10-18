@@ -2,12 +2,15 @@ To use the following configurations with servo drives other than Lichuan,
 only the ethercat-conf.xml file needs to be reviewed and adjusted according to the manual or ESI file provided by the servo drive manufacturer.    
 Compare the corresponding index numbers.    
     
-Vendor ID. vid="00000766"pid="00000402"    
-Object Group Number.    
+Vendor ID. vid="00000766"pid="00000402"  
+ also slave idx="0" type="EK1100"
+         
+Object Group Numbers    
 pdo idx="1600"    
-Object number.    
-pdoEntry idx="6040" bitLen="16"    
-also slave idx="0" type="EK1100"    
-Modify these values accordingly for the objects you are interested in.    
+Object numbers     
+pdoEntry idx="6040" bitLen="16"
+       
+    
+Rewiew and Modify these values accordingly for all objects.    
 These changes are supposed to be cosmetic only.    
    
