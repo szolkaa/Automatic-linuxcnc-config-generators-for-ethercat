@@ -701,18 +701,29 @@ SECOND CIRCUIT: 24V+ POWER SUPPLY --> DO2A INPUT --> DO2B OUTPUT --> RELAY INPUT
         
 <details>        
            
-<summary id=3. tuning parameters>3. tuning parameters</summary>    
-  
-       
-The firmware appears to be incomplete in terms self-tuning for P08 paraparameters group needed for CSP mode,    
-
-section P09.00 appear to be present in the parameter list,      
-without the corresponding functionality actually working.      
+<summary id=3. tuning parameters>3. tuning parameters</summary>       
+           
+In CSP mode, parameter        
+P0C.13 (Whether the communication write function code value is updated to EEPROM) set to 1.           
+P08.19 – Speed Feedforward Gain to 100         
+          
+P09.00 (Self-Adjustment Mode) must be set to 1.to enable dynamic adjustment of the gain loop parameters.       
          
-     
-However, the following parameters can still be configured manually:    
-P08.15 – Load Inertia Ratio    
-Default value: 1    
+(parameter P09.00 set to 1 enables P09.01)         
+      
+After that, you can adjust parameter P09.01 (Group 1 Rigidity Level Selection). Changing its value dynamically adjusts the following gain loop parameters:     
+- P08.00 – Speed Loop Gain         
+- P08.01 – Speed Loop Integration       
+- P08.02 – Position Loop Gain        
+        
+For reasons that are still unclear, in CSP mode, the following error increases proportionally with velocity, indicating a dynamic lag in the control system.          
+This suggests that there may be another factor in the control system overriding or limiting the effect of the target position and speed feedforward, preventing them from functioning as expected.       
+Until this issue is resolved, CSV mode is recommended.         
+                 
+       
+      the following parameters can still be configured manually:       
+P08.15 – Load Inertia Ratio      
+Default value: 1     
 safe value: 2    
    
 P08.19 – Speed Feedforward Gain    
