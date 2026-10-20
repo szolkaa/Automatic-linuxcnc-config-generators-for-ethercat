@@ -139,6 +139,8 @@ Disadvantages is limited influence over position-loop dynamics if the drive has 
 Tuning is performed in the servo drive or the manufacturer's software, not in HAL.     
 The  following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
 Without any tuning, the joint.0.f-error can be several millimeters.
+Dynamic lag — the actual position is shifted in time relative to the commanded position.     
+
    
    
 CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC         
