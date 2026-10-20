@@ -707,7 +707,7 @@ In CSP mode, parameter
 ```P0C.13``` (Whether the communication write function code value is updated to EEPROM) set to 1.           
 ```P08.19``` – Speed Feedforward Gain to 100         
           
-P09.00 (Self-Adjustment Mode) must be set to 1.to enable dynamic adjustment of the gain loop parameters.       
+```P09.00``` (Self-Adjustment Mode) must be set to 1.to enable dynamic adjustment of the gain loop parameters.       
          
 (```parameter P09.00 set to 1 enables P09.01```)         
       
