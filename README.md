@@ -751,7 +751,7 @@ Recommended range for ball-screw-driven systems: 15–20
 *Note that the parser in the XML generator has been adjusted only for Lichuan ESI.xml files due to the lack of ESI files from other manufacturers.
 It is still possible to use the HAL and INI generators with a fixed ethercat-conf.xml.
 
-*With basic drives that have a weak or unknown position loop , where the firmware itself has not been properly tuned, with occuring dynamic position lag, CSV mode helps avoid large joint.0.f-error -following errors because the position loop is implemented on the LinuxCNC side, using a PID controller.         
+*With basic drives that have a weak or unknown position loop , where the firmware itself before releasing has not been check and optimalized to work with linuxcnc, with occuring dynamic position lag, CSV mode helps avoid large joint.0.f-error -following errors because the position loop is implemented on the LinuxCNC side, using a PID controller.         
 
 *Last stege Proposed configuration in ini generator and also 3 homing Cutom joints in hal generator is for absolute encoders with use of softlimits therefore before using automatic configuration, proper installation of the CIA402 homing component is required.     
 Then the homing works on the principle of Feedback mirroring – 'pos_fb' reflects 'pos_cmd'.        
