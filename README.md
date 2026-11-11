@@ -636,7 +636,10 @@ G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
 
 M2                          (End of program)
 ```          
-           
+
+        
+        
+                   
 11.4 Some Error during LinuxCNC startup               
 rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
 lcec_conf: ERROR: couldn't allocate user/RT shared memory   
