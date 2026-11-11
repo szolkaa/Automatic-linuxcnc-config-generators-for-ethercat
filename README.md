@@ -606,8 +606,9 @@ The master must be active before the slaves, because in EtherCAT the master perf
 - These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.    
    
 Even so, with CSV the following error can reach satisfactory values of around 0.02 mm at its peak with only basic tuning (P and FF1), which is already included in the HAL files `Config-files-linuxcnc/CSV_mode/ as      
-```setp x-pid.Pgain 10    
-setp x-pid.FF1 1        
+```
+setp x-pid.Pgain 10
+setp x-pid.FF1 1
 ```      
 11.3 Exampe tuning g-code            
 Jog and Set program starting point G54 by Clicking touch off for each axis.      
