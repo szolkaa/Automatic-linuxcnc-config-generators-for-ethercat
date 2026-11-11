@@ -158,8 +158,8 @@ These delays limit the maximum achievable loop gain, so dynamic stiffness may be
 However, by choosing CSV mode, the following error can reach satisfactory values of around 0.02 mm at its peak, without any tuning at all.        
 
 
-5.3 Exampe tuning G code
-Click touch off and Set G54 for each axis
+5.3 Exampe tuning G code           
+Click touch off and Set G54 for each axis            
 then in g code set travel forward and back according to your soft limits eg.X170, -X-170 and save file as .ngc and then open it in linuxcnc gui
 
 ```
