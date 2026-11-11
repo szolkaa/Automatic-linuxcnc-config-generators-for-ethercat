@@ -116,106 +116,8 @@ And the parameters in [KINS] and [TRAJ] change dynamically and later define the 
 
 </details>
 
----
-
-<details>
-<summary id="5-ethercat-solutions">5. Some EtherCAT Solutions</summary>
-
-5.1 Operating State  
-The master must be active before the slaves, because in EtherCAT the master performs the role of synchronization and managing the communication cycle. The slaves cannot initiate transmission or synchronize with the bus on their own; they wait until the master starts the data cycle and distributes the timing. If the master is not active, the slaves will be in a waiting or error state, because they will not receive the reference clock or control commands. In many cases, re-initialization will not occur. Therefore, powering on the slaves or connecting the cable with already powered slaves should properly happen after starting the LinuxCNC GUI.
-      
-       
-            
-5.2 Choosing Between CSV and CSP Mode          
-          
-CSP: LinuxCNC commands position, and the position loop runs on the drive                
-LinuxCNC usually directly in the trajectory planner sends the target position to the drive at every cycle.        
-The drive runs its own velocity and current loops, and often also a position loop,       
-depending on the implementation (some drives in CSP mode receive only the target position and add their own position controller, which can be enhanced with feed-forward).    
- Positioning stiffness and accuracy depend mainly on the drive.    
-           
-The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
-Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or not optimal firmware in the servo drive with linuxcnc.          
-Tuning is performed in the servo drive or the manufacturer's software, not in HAL, or INI.     
-The  following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
-Without any tuning, the joint.0.f-error can be several millimeters.
-Dynamic lag — the actual position is shifted in time relative to the commanded position.     
-[Machine ==> Hal Scope]        
-![5.2](images/5.2.png)
-      
+***   
    
-   
-CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC         
-The position loop is implemented as a PID controller in LinuxCNC (pid.N.command = commanded position, feedback = encoder position received via PDO, output = commanded velocity sent as the target velocity).     
-The drive handles only the velocity and current loops.       
- Full control over tuning in HAL (P, I, D, velocity FF1, acceleration FF2, bias, deadband, and integral limits).       
-You can easily add filters, compensations, etc.  
-    
-With drives that have a poor or unknown position loop, this often produces better results.       
-Disadvantages is performance depends on servo-thread jitter and communication delays        
-(a 1 ms EtherCAT cycle is typical, which is relatively slow compared with the 8–20 kHz loop running in the drive).        
-These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.           
-However, by choosing CSV mode, the following error can reach satisfactory values of around 0.02 mm at its peak, without any tuning at all.        
-
-
-5.3 Exampe tuning g-code            
-Jog and Set program starting point G54 by Clicking touch off for each axis.      
-Then, set the travel distance in the G-code according to the soft limits (e.g. X170 and X-170), save the file as .ngc, and open it in the LinuxCNC GUI.      
-    
-```
-G21                         (Metric units: mm)
-
-G54                         (Select work coordinate system G54)
-
-G90                         (Absolute positioning)
-
-G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
-
-G91                         (Relative positioning)
-
-o100 repeat [20]            (Repeat the following sequence 20 times)
-   G1 X170 F3000            (Move X axis +170 mm at 3000 mm/min)
-   G1 X-170 F3000           (Move X axis -170 mm at 3000 mm/min)
-o100 endrepeat              (End of repeat loop)
-
-G90                         (Switch back to absolute positioning)
-
-G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
-
-M2                          (End of program)
-```          
-           
-5.4 Some Error during LinuxCNC startup               
-rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
-lcec_conf: ERROR: couldn't allocate user/RT shared memory   
-  
-check shared memory: ipcs -m         
-Fild locket segment and delate: sudo ipcrm -m 32812      
-
-Example:  
-k@k:~$ ipcs -m  
------- Shared Memory Segments --------    
-key        shmid      owner      perms      bytes      nattch     status      
-0x00000000 32775      k          600        4194304    2          dest         
-0x00000000 10         k          600        524288     2          dest         
-0x00000000 15         k          600        524288     2          dest         
-0x00000000 17         k          600        524288     2          dest         
-0x00000000 19         k          600        4194304    2          dest         
-0x00000000 32793      k          600        524288     2          dest         
-0x00000000 28         k          600        1048576    2          dest         
-0x00000000 360481     k          600        524288     2          dest         
-0x00000000 294947     k          600        524288     2          dest         
-0x00000000 262182     k          600        524288     2          dest         
-0xacb572c7 32812      k          600        2644       0          locked      
-0x00000000 55         k          600        524288     2          dest         
-0x00000000 59         k          600        524288     2          dest         
-0x00000000 62         k          600        524288     2          dest 
-
-</details>
-
-
-***
-
 
 # 2. From LinuxCNC 2.9.8 Debian 13 Installation via EtherCat Master to the First Motor Movement    
         
@@ -654,8 +556,103 @@ Sometimes a small gap between the tool and the surface is used, e.g., using a sh
 For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis positions to the WCS.       
        
 ![wcs](images/wcs.png)         
+
+
+
+<details>
+<summary id="11-ethercat-solutions">11. Some EtherCAT Solutions</summary>
+
+11.1 Operating State  
+The master must be active before the slaves, because in EtherCAT the master performs the role of synchronization and managing the communication cycle. The slaves cannot initiate transmission or synchronize with the bus on their own; they wait until the master starts the data cycle and distributes the timing. If the master is not active, the slaves will be in a waiting or error state, because they will not receive the reference clock or control commands. In many cases, re-initialization will not occur. Therefore, powering on the slaves or connecting the cable with already powered slaves should properly happen after starting the LinuxCNC GUI.
+      
        
+            
+11.2 Choosing Between CSV and CSP Mode          
           
+CSP: LinuxCNC commands position, and the position loop runs on the drive                
+LinuxCNC usually directly in the trajectory planner sends the target position to the drive at every cycle.        
+The drive runs its own velocity and current loops, and often also a position loop,       
+depending on the implementation (some drives in CSP mode receive only the target position and add their own position controller, which can be enhanced with feed-forward).    
+ Positioning stiffness and accuracy depend mainly on the drive.    
+           
+The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
+Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or not optimal firmware in the servo drive with linuxcnc.          
+Tuning is performed in the servo drive or the manufacturer's software, not in HAL, or INI.     
+The  following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
+Without any tuning, the joint.0.f-error can be several millimeters.
+Dynamic lag — the actual position is shifted in time relative to the commanded position.     
+[Machine ==> Hal Scope]        
+![5.2](images/5.2.png)
+      
+   
+   
+CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC         
+The position loop is implemented as a PID controller in LinuxCNC (pid.N.command = commanded position, feedback = encoder position received via PDO, output = commanded velocity sent as the target velocity).     
+The drive handles only the velocity and current loops.       
+ Full control over tuning in HAL (P, I, D, velocity FF1, acceleration FF2, bias, deadband, and integral limits).       
+You can easily add filters, compensations, etc.  
+    
+With drives that have a poor or unknown position loop, this often produces better results.       
+Disadvantages is performance depends on servo-thread jitter and communication delays        
+(a 1 ms EtherCAT cycle is typical, which is relatively slow compared with the 8–20 kHz loop running in the drive).        
+These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.           
+However, by choosing CSV mode, the following error can reach satisfactory values of around 0.02 mm at its peak, without any tuning at all.        
+
+
+11.3 Exampe tuning g-code            
+Jog and Set program starting point G54 by Clicking touch off for each axis.      
+Then, set the travel distance in the G-code according to the soft limits (e.g. X170 and X-170), save the file as .ngc, and open it in the LinuxCNC GUI.      
+    
+```
+G21                         (Metric units: mm)
+
+G54                         (Select work coordinate system G54)
+
+G90                         (Absolute positioning)
+
+G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
+
+G91                         (Relative positioning)
+
+o100 repeat [20]            (Repeat the following sequence 20 times)
+   G1 X170 F3000            (Move X axis +170 mm at 3000 mm/min)
+   G1 X-170 F3000           (Move X axis -170 mm at 3000 mm/min)
+o100 endrepeat              (End of repeat loop)
+
+G90                         (Switch back to absolute positioning)
+
+G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
+
+M2                          (End of program)
+```          
+           
+11.4 Some Error during LinuxCNC startup               
+rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
+lcec_conf: ERROR: couldn't allocate user/RT shared memory   
+  
+check shared memory: ipcs -m         
+Fild locket segment and delate: sudo ipcrm -m 32812      
+
+Example:  
+k@k:~$ ipcs -m  
+------ Shared Memory Segments --------    
+key        shmid      owner      perms      bytes      nattch     status      
+0x00000000 32775      k          600        4194304    2          dest         
+0x00000000 10         k          600        524288     2          dest         
+0x00000000 15         k          600        524288     2          dest         
+0x00000000 17         k          600        524288     2          dest         
+0x00000000 19         k          600        4194304    2          dest         
+0x00000000 32793      k          600        524288     2          dest         
+0x00000000 28         k          600        1048576    2          dest         
+0x00000000 360481     k          600        524288     2          dest         
+0x00000000 294947     k          600        524288     2          dest         
+0x00000000 262182     k          600        524288     2          dest         
+0xacb572c7 32812      k          600        2644       0          locked      
+0x00000000 55         k          600        524288     2          dest         
+0x00000000 59         k          600        524288     2          dest         
+0x00000000 62         k          600        524288     2          dest 
+     
+            
 </details>         
    
 ---   
