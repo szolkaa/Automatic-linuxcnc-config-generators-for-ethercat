@@ -135,7 +135,7 @@ depending on the implementation (some drives in CSP mode receive only the target
  Positioning stiffness and accuracy depend mainly on the drive.    
            
 The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
-Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or poorly implemented firmware in the servo drive          
+Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or not optimal firmware in the servo drive with linuxcnc.          
 Tuning is performed in the servo drive or the manufacturer's software, not in HAL.     
 The  following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
 Without any tuning, the joint.0.f-error can be several millimeters.
