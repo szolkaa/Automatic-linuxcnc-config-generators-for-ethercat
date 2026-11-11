@@ -570,38 +570,43 @@ The master must be active before the slaves, because in EtherCAT the master perf
       
        
             
-11.2 Choosing Between CSV and CSP Mode          
-          
-CSP: LinuxCNC commands position, and the position loop runs on the drive                
-LinuxCNC usually directly in the trajectory planner sends the target position to the drive at every cycle.        
-The drive runs its own velocity and current loops, and often also a position loop,       
-depending on the implementation (some drives in CSP mode receive only the target position and add their own position controller, which can be enhanced with feed-forward).    
- Positioning stiffness and accuracy depend mainly on the drive.    
+11.2 Choosing Between CSV and CSP Mode           
            
-The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
-Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or not optimal firmware in the servo drive with linuxcnc.          
-Tuning is performed in the servo drive or the manufacturer's software, not in HAL, or INI.     
-The  following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
-Without any tuning, the joint.0.f-error can be several millimeters.
-Dynamic lag — the actual position is shifted in time relative to the commanded position.     
+ 
+### CSP: LinuxCNC commands position, and the position loop runs on the drive    
+      
+- LinuxCNC, usually directly from the trajectory planner, sends the target position to the drive on every cycle.    
+- The drive runs its own velocity and current loops, and usually also the position loop, depending on the implementation. Some drives in CSP mode receive only the target position and add their own position controller, which can be enhanced with feed-forward.      
+- Positioning stiffness and accuracy depend mainly on the drive.      
+- The drive has direct access to the encoder, and its current and velocity loops run at 8-20 kHz (the position loop is usually somewhat slower, a few kHz), so the feedback is not affected by PC jitter.    
+   
+**Disadvantages:**   
+  
+- Limited influence over position-loop dynamics if the drive has a weak position controller or not optimal firmware in the servo drive with LinuxCNC.     
+- Tuning is performed in the drive or in the manufacturer's software, not in HAL or the INI file.     
+- The following error is calculated on the drive side, and LinuxCNC sees it only indirectly. Without any tuning, `joint.0.f-error` can be several millimeters because of dynamic lag, meaning the actual position is shifted in time relative to the commanded position.       
+     
+    
 [Machine ==> Hal Scope]        
 ![5.2](images/5.2.png)
       
    
-   
-CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC         
-The position loop is implemented as a PID controller in LinuxCNC (pid.N.command = commanded position, feedback = encoder position received via PDO, output = commanded velocity sent as the target velocity).     
-The drive handles only the velocity and current loops.       
- Full control over tuning in HAL (P, I, D, velocity FF1, acceleration FF2, bias, deadband, and integral limits).       
-You can easily add filters, compensations, etc.  
+       
+### CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC     
+ 
+- The position loop is implemented as a PID controller in LinuxCNC: `pid.N.command` is the commanded position, the feedback is the encoder position received via PDO, and the output is the commanded velocity sent to the drive as the target velocity.    
+- The drive handles only the velocity and current loops.   
+- You have full control over tuning in HAL (P, I, D, velocity FF1, acceleration FF2, bias, deadband and integral limits).   
+- You can easily add filters, compensations, etc.   
+- With drives that have a poor or unknown position loop, this often produces better results.   
+     
+**Disadvantages:**    
     
-With drives that have a poor or unknown position loop, this often produces better results.       
-Disadvantages is performance depends on servo-thread jitter and communication delays        
-(a 1 ms EtherCAT cycle is typical, which is relatively slow compared with the 8–20 kHz loop running in the drive).        
-These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.           
-However, by choosing CSV mode, the following error can reach satisfactory values of around 0.02 mm at its peak, without any tuning at all.        
-
-
+- Performance depends on servo-thread jitter and communication delays. The position loop runs at the EtherCAT cycle rate (1 ms is typical, i.e. 1 kHz), which is slow compared with the 8-20 kHz current and velocity loops in the drive.      
+- These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.    
+   
+Even so, with CSV the following error can reach satisfactory values of around 0.02 mm at its peak with only basic tuning (P and FF1).     
+    
 11.3 Exampe tuning g-code            
 Jog and Set program starting point G54 by Clicking touch off for each axis.      
 Then, set the travel distance in the G-code according to the soft limits (e.g. X170 and X-170), save the file as .ngc, and open it in the LinuxCNC GUI.      
