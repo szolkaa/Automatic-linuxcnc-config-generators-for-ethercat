@@ -621,7 +621,7 @@ G54                         (Select work coordinate system G54)
 
 G90                         (Absolute positioning)
 
-G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
+G1 X0 Y0 Z0 F300            (Move to G54 origin: X0 Y0 Z0)
 
 G91                         (Relative positioning)
 
