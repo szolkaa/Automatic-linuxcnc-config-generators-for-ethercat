@@ -163,23 +163,26 @@ Jog and Set program starting point G54 by Clicking touch off for each axis.
 then in g code set travel forward and back according to your soft limits eg.X170, -X-170 and save file as .ngc and then open it in linuxcnc gui
 
 ```
-G21         (Metric units: mm)
-     
-G54
-     
-G90
-G0 X0 Y0 Z0 F500
-      
-G91         (Relative positioning)
+G21                         (Metric units: mm)
 
-o100 repeat [20]
-   G1 X170 F3000
-   G1 X-170 F3000
-o100 endrepeat
+G54                         (Select work coordinate system G54)
 
-G90
-G0 X0 Y0 Z0 F500
-M2
+G90                         (Absolute positioning)
+
+G0 X0 Y0 Z0 F400            (Move to work zero: X0 Y0 Z0)
+
+G91                         (Relative positioning)
+
+o100 repeat [20]            (Repeat the following sequence 20 times)
+   G1 X170 F3000            (Move X axis +170 mm at 3000 mm/min)
+   G1 X-170 F3000           (Move X axis -170 mm at 3000 mm/min)
+o100 endrepeat              (End of repeat loop)
+
+G90                         (Switch back to absolute positioning)
+
+G0 X0 Y0 Z0 F400            (Move back to work zero: X0 Y0 Z0)
+
+M2                          (End of program)
 ```          
            
 5.4 Some Error during LinuxCNC startup               
