@@ -647,8 +647,7 @@ lcec_conf: ERROR: couldn't allocate user/RT shared memory
 check shared memory: ```ipcs -m```         
 Find locked segment and delate: ```sudo ipcrm -m 196654```     
 
-Example:  
-k@k:~$ ipcs -m  
+Example:      
 ![11](images/11.png)
      
             
