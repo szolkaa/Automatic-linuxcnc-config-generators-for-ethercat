@@ -163,23 +163,23 @@ Click touch off and Set G54 for each axis
 then in g code set travel forward and back according to your soft limits eg.X170, -X-170 and save file as .ngc and then open it in linuxcnc gui
 
 
-`G21         (Metric units: mm)`
-``
-`G54`
-``
-`G90`
-`G0 X0 Y0 Z0 F500`
-``
-`G91         (Relative positioning)`
-``
-`o100 repeat [20]`
-`    G1 X170 F3000`
-`    G1 X-170 F3000`
-`o100 endrepeat`
-``
-`G90`
-`G0 X0 Y0 Z0 F500`
-`M2`
+```G21         (Metric units: mm)
+     
+G54
+     
+G90
+G0 X0 Y0 Z0 F500
+      
+G91         (Relative positioning)
+
+o100 repeat [20]
+   G1 X170 F3000
+   G1 X-170 F3000
+o100 endrepeat
+
+G90
+G0 X0 Y0 Z0 F500
+M2```
 
     
 5.4 Some Error during LinuxCNC startup               
