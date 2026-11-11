@@ -141,7 +141,7 @@ The  following error is calculated on the drive side, and LinuxCNC only sees it 
 Without any tuning, the joint.0.f-error can be several millimeters.
 Dynamic lag — the actual position is shifted in time relative to the commanded position.     
 [Machine ==> Hal Scope]        
-![5.2](images/5.2.png)      
+![5.2](images/5.2.png)
       
    
    
