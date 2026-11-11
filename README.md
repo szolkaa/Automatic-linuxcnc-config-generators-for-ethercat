@@ -630,12 +630,11 @@ o100 repeat [20]            (Repeat the following sequence 20 times)
    G1 X-170 F3000           (Move X axis -170 mm at 3000 mm/min)
 o100 endrepeat              (End of repeat loop)
 
-G90                         (Switch back to absolute positioning)
-
-G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
 
 M2                          (End of program)
-```          
+```
+
+If you want to stop the G-code before it finishes, slowly move the Feed Override slider down to 0, then press the GUI Power button.       
 
         
         
