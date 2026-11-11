@@ -470,14 +470,14 @@ Paste the entire configuration folder containing the hal, ini, and xml files the
       
 Before the first LinuxCNC startup, you can check if the memory segments are clean.    
 To avoid such errors:      
-rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument      
-lcec_conf: ERROR: couldn't allocate user/RT shared memory      
-         
-```ipcs -m```      
-If any of them have a locked status, remove it by entering (the number corresponding to the shmid column):        
-```sudo ipcrm -m 32812```     
-          
-![b6.2](images/b6.2.png)      
+rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
+lcec_conf: ERROR: couldn't allocate user/RT shared memory   
+  
+check shared memory: ```ipcs -m```         
+Find locked segment and delate: ```sudo ipcrm -m 196654```     
+
+Example:      
+![11](images/11.png)     
 .    
 .     
 . ***Restart computer***      
@@ -639,16 +639,6 @@ M2                          (End of program)
 
         
         
-                   
-11.4 Some Error during LinuxCNC startup               
-rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
-lcec_conf: ERROR: couldn't allocate user/RT shared memory   
-  
-check shared memory: ```ipcs -m```         
-Find locked segment and delate: ```sudo ipcrm -m 196654```     
-
-Example:      
-![11](images/11.png)
      
             
 </details>         
