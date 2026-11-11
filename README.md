@@ -162,8 +162,8 @@ However, by choosing CSV mode, the following error can reach satisfactory values
 Click touch off and Set G54 for each axis
 then in g code set travel forward and back according to your soft limits eg.X170, -X-170 and save file as .ngc and then open it in linuxcnc gui
 
-
-```G21         (Metric units: mm)
+```
+G21         (Metric units: mm)
      
 G54
      
@@ -179,9 +179,9 @@ o100 endrepeat
 
 G90
 G0 X0 Y0 Z0 F500
-M2```
-
-    
+M2
+```          
+           
 5.4 Some Error during LinuxCNC startup               
 rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
 lcec_conf: ERROR: couldn't allocate user/RT shared memory   
