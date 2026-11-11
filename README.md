@@ -558,6 +558,9 @@ For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis po
 ![wcs](images/wcs.png)         
 
 
+</details>   
+
+--- 
 
 <details>
 <summary id="11-ethercat-solutions">11. Some EtherCAT Solutions</summary>
