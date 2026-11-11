@@ -644,8 +644,8 @@ M2                          (End of program)
 rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
 lcec_conf: ERROR: couldn't allocate user/RT shared memory   
   
-check shared memory: ipcs -m         
-Fild locket segment and delate: sudo ipcrm -m 196654     
+check shared memory: ```ipcs -m```         
+Find locked segment and delate: ```sudo ipcrm -m 196654```     
 
 Example:  
 k@k:~$ ipcs -m  
