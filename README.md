@@ -169,7 +169,7 @@ G54                         (Select work coordinate system G54)
 
 G90                         (Absolute positioning)
 
-G0 X0 Y0 Z0 F400            (Move to work zero: X0 Y0 Z0)
+G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
 
 G91                         (Relative positioning)
 
@@ -180,7 +180,7 @@ o100 endrepeat              (End of repeat loop)
 
 G90                         (Switch back to absolute positioning)
 
-G0 X0 Y0 Z0 F400            (Move back to work zero: X0 Y0 Z0)
+G1 X0 Y0 Z0 F400            (Move to G54 origin: X0 Y0 Z0)
 
 M2                          (End of program)
 ```          
