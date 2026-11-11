@@ -136,7 +136,7 @@ depending on the implementation (some drives in CSP mode receive only the target
            
 The drive has direct access to the encoder in a loop running at 8–20 kHz, so it is not affected by PC jitter.    
 Disadvantages is limited influence over position-loop dynamics if the drive has a weak position controller or not optimal firmware in the servo drive with linuxcnc.          
-Tuning is performed in the servo drive or the manufacturer's software, not in HAL.     
+Tuning is performed in the servo drive or the manufacturer's software, not in HAL, or INI.     
 The  following error is calculated on the drive side, and LinuxCNC only sees it indirectly. 
 Without any tuning, the joint.0.f-error can be several millimeters.
 Dynamic lag — the actual position is shifted in time relative to the commanded position.     
@@ -156,9 +156,33 @@ Disadvantages is performance depends on servo-thread jitter and communication de
 (a 1 ms EtherCAT cycle is typical, which is relatively slow compared with the 8–20 kHz loop running in the drive).        
 These delays limit the maximum achievable loop gain, so dynamic stiffness may be lower than in CSP mode, where the position loop runs locally on the drive.           
 However, by choosing CSV mode, the following error can reach satisfactory values of around 0.02 mm at its peak, without any tuning at all.        
+
+
+5.3 Exampe tuning G code
+Click touch off and Set G54 for each axis
+then in g code set travel forward and back according to your soft limits eg.X170, -X-170 and save file as .ngc and then open it in linuxcnc gui
+
+
+`G21         (Metric units: mm)`
+``
+`G54`
+``
+`G90`
+`G0 X0 Y0 Z0 F500`
+``
+`G91         (Relative positioning)`
+``
+`o100 repeat [20]`
+`    G1 X170 F3000`
+`    G1 X-170 F3000`
+`o100 endrepeat`
+``
+`G90`
+`G0 X0 Y0 Z0 F500`
+`M2`
+
     
-    
-5.3 Some Error during LinuxCNC startup               
+5.4 Some Error during LinuxCNC startup               
 rtapi_shmem_new failed due to shmget(key=0xacb572c7): Invalid argument    
 lcec_conf: ERROR: couldn't allocate user/RT shared memory   
   
