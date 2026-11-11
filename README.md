@@ -573,7 +573,7 @@ The master must be active before the slaves, because in EtherCAT the master perf
 11.2 Choosing Between CSV and CSP Mode           
            
  
-### CSP: LinuxCNC commands position, and the position loop runs on the drive    
+**CSP: LinuxCNC commands position, and the position loop runs on the drive**    
       
 - LinuxCNC, usually directly from the trajectory planner, sends the target position to the drive on every cycle.    
 - The drive runs its own velocity and current loops, and usually also the position loop, depending on the implementation. Some drives in CSP mode receive only the target position and add their own position controller, which can be enhanced with feed-forward.      
@@ -592,7 +592,7 @@ The master must be active before the slaves, because in EtherCAT the master perf
       
    
        
-### CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC     
+**CSV: LinuxCNC commands velocity, and the position loop runs in the PID controller on the PC**     
  
 - The position loop is implemented as a PID controller in LinuxCNC: `pid.N.command` is the commanded position, the feedback is the encoder position received via PDO, and the output is the commanded velocity sent to the drive as the target velocity.    
 - The drive handles only the velocity and current loops.   
