@@ -62,7 +62,6 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>
 **Servo Thread Configuration**
 <br>
-
 ```addf lcec.read-all servo-thread```          # Adding EtherCAT data reading to the servo thread
 
 ```addf cia402.0.read-all servo-thread```          # Adding X-axis drive data reading to the servo thread
@@ -141,6 +140,9 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 `net X-opmode-display cia402.0.opmode-display => lcec.0.1.opmode-display` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the displayed operation mode to EtherCAT
 
 `net X-status-word lcec.0.1.status-word => cia402.0.statusword` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the EtherCAT status word to CIA402
+<br>
+<br>
+<br>
 <br>
 <br>
 **Different NET Connections for CSP Mode**
