@@ -46,6 +46,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>
 
 **Module Loading and Configuration**
+<br>
 ```loadrt [KINS]KINEMATICS```                                                        # Loading the machine kinematics module
 
 ```loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS```  # Loading the motion control module and setting the servo period and number of joints
@@ -59,6 +60,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 ```loadrt pid names=x-pid```          # Loading one PID controller for the X axis
 <br>
 **Servo Thread Configuration**
+<br>
 
 ```addf lcec.read-all servo-thread```          # Adding EtherCAT data reading to the servo thread
 
@@ -75,9 +77,11 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 ```addf lcec.write-all servo-thread```          # Adding EtherCAT data transmission to the servo thread
 <br> 
 **LinuxCNC Enable Configuration**
+<br>
 ```setp iocontrol.0.emc-enable-in 1```          # Setting the LinuxCNC enable signal
-
+<br>
 **4. Axis X Drive Configuration**
+<br>
 AXIS X / joint.0 / cia402.0 / slave.1```     
 <br>
 ```setp cia402.0.pos-scale 1677721.6```          # Setting the X-axis position scaling factor
@@ -89,6 +93,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 ```setp x-pid.Pgain 10```          # Setting the proportional PID gain
 <br> 
 **PID Controller Configuration**
+<br>
 ```setp x-pid.FF1 1```          # Setting the velocity feed-forward coefficient
 
 ```setp x-pid.Igain 0```          # Disabling the integral PID gain
@@ -96,8 +101,9 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 ```setp x-pid.Dgain 0```          # Disabling the derivative PID gain
 
 ```setp x-pid.maxoutput 4000```          # Setting the maximum PID output limit
-
+<br>
 **LinuxCNC Motion and Homing Connections**
+<br>
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
 `net X-pos-fb cia402.0.pos-fb => joint.0.motor-pos-fb x-pid.feedback` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting actual position feedback to LinuxCNC and PID
@@ -113,8 +119,9 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 `net X-is-custom-homing cia402.0.stat-homing => joint.0.is-custom-homing` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing status signal
 
 `net X-custom-home-done cia402.0.stat-homed => joint.0.custom-homing-finished` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing completion signal
-
+<br>
 **CIA402 and EtherCAT Connections**
+<br>
 `net X-control-word cia402.0.controlword => lcec.0.1.control-word` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the CIA402 control word to EtherCAT
 
 `net X-opmode cia402.0.opmode => lcec.0.1.opmode` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the drive operation mode to EtherCAT
@@ -128,9 +135,9 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 `net X-opmode-display cia402.0.opmode-display => lcec.0.1.opmode-display` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the displayed operation mode to EtherCAT
 
 `net X-status-word lcec.0.1.status-word => cia402.0.statusword` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the EtherCAT status word to CIA402
-
+<br>
 **Different NET Connections for CSP Mode**
-
+<br>
 The following NET connections are used in CSP mode:
 
 `net X-pos-cmd joint.0.motor-pos-cmd => cia402.0.pos-cmd` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the CIA402 position command
@@ -138,9 +145,9 @@ The following NET connections are used in CSP mode:
 `net X-target-position cia402.0.drv-target-position => lcec.0.1.target-position` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the target position to the EtherCAT drive
 
 `net X-actual-velocity cia402.0.drv-actual-velocity => lcec.0.1.actual-velocity` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the actual velocity signal to EtherCAT
-
+<br>
 **They replace the following NET connections used in the previous configuration:**
-
+<br>
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
 `net X-vel-out x-pid.output => cia402.0.velocity-cmd` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the PID output to the CIA402 velocity command
