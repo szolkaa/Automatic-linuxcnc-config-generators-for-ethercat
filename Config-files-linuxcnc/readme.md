@@ -45,7 +45,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>
 <br>
 
-
+### 1. Module Loading and Configuration
 ```loadrt [KINS]KINEMATICS```                                                        # Loading the machine kinematics module
 
 ```loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS```  # Loading the motion control module and setting the servo period and number of joints
