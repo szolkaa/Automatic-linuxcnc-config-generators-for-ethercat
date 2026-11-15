@@ -41,7 +41,8 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>      
 <br>     
 ## **HAL File Explanation**   
-
+<br>
+<br>
 
 
 ```loadrt [KINS]KINEMATICS```                                                        # Loading the machine kinematics module
