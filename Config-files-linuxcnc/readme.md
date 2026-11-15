@@ -90,55 +90,59 @@ setp x-pid.Dgain 0          # Disabling the derivative PID gain
 
 setp x-pid.maxoutput 4000          # Setting the maximum PID output limit
 
-net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command          # Connecting the commanded position to the PID input
 
-net X-pos-fb cia402.0.pos-fb => joint.0.motor-pos-fb x-pid.feedback          # Connecting actual position feedback to LinuxCNC and PID
 
-net X-vel-out x-pid.output => cia402.0.velocity-cmd          # Connecting the PID output to the drive velocity command
+`net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
-net X-enable joint.0.amp-enable-out => cia402.0.enable x-pid.enable          # Connecting the drive enable signal to CIA402 and PID
+`net X-pos-fb cia402.0.pos-fb => joint.0.motor-pos-fb x-pid.feedback` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting actual position feedback to LinuxCNC and PID
 
-net X-amp-fault cia402.0.drv-fault => joint.0.amp-fault-in          # Connecting the drive fault signal to LinuxCNC
+`net X-vel-out x-pid.output => cia402.0.velocity-cmd` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the PID output to the drive velocity command
 
-net X-custom-home joint.0.request-custom-homing => cia402.0.home          # Connecting the custom homing request
+`net X-enable joint.0.amp-enable-out => cia402.0.enable x-pid.enable` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the drive enable signal to CIA402 and PID
 
-net X-is-custom-homing cia402.0.stat-homing => joint.0.is-custom-homing          # Connecting the homing status signal
+`net X-amp-fault cia402.0.drv-fault => joint.0.amp-fault-in` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the drive fault signal to LinuxCNC
 
-net X-custom-home-done cia402.0.stat-homed => joint.0.custom-homing-finished          # Connecting the homing completion signal
+`net X-custom-home joint.0.request-custom-homing => cia402.0.home` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the custom homing request
 
-net X-control-word cia402.0.controlword => lcec.0.1.control-word          # Connecting the CIA402 control word to EtherCAT
+`net X-is-custom-homing cia402.0.stat-homing => joint.0.is-custom-homing` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing status signal
 
-net X-opmode cia402.0.opmode => lcec.0.1.opmode          # Connecting the drive operation mode to EtherCAT
+`net X-custom-home-done cia402.0.stat-homed => joint.0.custom-homing-finished` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing completion signal
 
-net X-target-velocity cia402.0.drv-target-velocity => lcec.0.1.target-velocity          # Connecting the target velocity to EtherCAT
+`net X-control-word cia402.0.controlword => lcec.0.1.control-word` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the CIA402 control word to EtherCAT
 
-net X-actual-position lcec.0.1.actual-position => cia402.0.drv-actual-position          # Connecting actual position feedback from EtherCAT to CIA402
+`net X-opmode cia402.0.opmode => lcec.0.1.opmode` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the drive operation mode to EtherCAT
 
-net X-actual-velocity lcec.0.1.actual-velocity => cia402.0.drv-actual-velocity          # Connecting actual velocity feedback from EtherCAT to CIA402
+`net X-target-velocity cia402.0.drv-target-velocity => lcec.0.1.target-velocity` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the target velocity to EtherCAT
 
-net X-opmode-display cia402.0.opmode-display => lcec.0.1.opmode-display          # Connecting the displayed operation mode to EtherCAT
+`net X-actual-position lcec.0.1.actual-position => cia402.0.drv-actual-position` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting actual position feedback from EtherCAT to CIA402
 
-net X-status-word lcec.0.1.status-word => cia402.0.statusword          # Connecting the EtherCAT status word to CIA402
+`net X-actual-velocity lcec.0.1.actual-velocity => cia402.0.drv-actual-velocity` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting actual velocity feedback from EtherCAT to CIA402
 
-Different NET connections for CSP mode
+`net X-opmode-display cia402.0.opmode-display => lcec.0.1.opmode-display` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the displayed operation mode to EtherCAT
+
+`net X-status-word lcec.0.1.status-word => cia402.0.statusword` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the EtherCAT status word to CIA402
+
+**Different NET connections for CSP mode**
 
 The following NET connections are used in CSP mode:
 
-net X-pos-cmd joint.0.motor-pos-cmd => cia402.0.pos-cmd          # Connecting the commanded position to the CIA402 position command
+`net X-pos-cmd joint.0.motor-pos-cmd => cia402.0.pos-cmd` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the CIA402 position command
 
-net X-target-position cia402.0.drv-target-position => lcec.0.1.target-position          # Connecting the target position to the EtherCAT drive
+`net X-target-position cia402.0.drv-target-position => lcec.0.1.target-position` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the target position to the EtherCAT drive
 
-net X-actual-velocity cia402.0.drv-actual-velocity => lcec.0.1.actual-velocity          # Connecting the actual velocity signal to EtherCAT
+`net X-actual-velocity cia402.0.drv-actual-velocity => lcec.0.1.actual-velocity` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the actual velocity signal to EtherCAT
 
-They replace the following NET connections used in the previous configuration:
+**They replace the following NET connections used in the previous configuration:**
 
-net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command          # Connecting the commanded position to the PID input
+`net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
-net X-vel-out x-pid.output => cia402.0.velocity-cmd          # Connecting the PID output to the CIA402 velocity command
+`net X-vel-out x-pid.output => cia402.0.velocity-cmd` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the PID output to the CIA402 velocity command
 
-net X-target-velocity cia402.0.drv-target-velocity => lcec.0.1.target-velocity          # Connecting the target velocity to the EtherCAT drive
+`net X-target-velocity cia402.0.drv-target-velocity => lcec.0.1.target-velocity` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the target velocity to the EtherCAT drive
 
-net X-actual-position lcec.0.1.actual-position => cia402.0.drv-actual-position          # Connecting the actual position feedback from EtherCAT to CIA402
+`net X-actual-position lcec.0.1.actual-position => cia402.0.drv-actual-position` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the actual position feedback from EtherCAT to CIA402
+
+
 
 
         
