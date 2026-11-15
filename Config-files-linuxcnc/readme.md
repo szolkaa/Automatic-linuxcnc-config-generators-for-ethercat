@@ -35,11 +35,11 @@ The ```halPin``` attribute (e.g., halPin="control-word") ```is exclusively used 
    
 Therefore, its value should not be modified becouse must ```match``` the corresponding current signal name in the HAL configuration.          
      
-.       
-.     
-.     
-.      
-.       
+<br>     
+<br>    
+<br>    
+<br>      
+<br>     
 ```Hal file expplanation```
 
 
@@ -71,14 +71,11 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 ```addf lcec.write-all servo-thread```          # Adding EtherCAT data transmission to the servo thread
 
 ```setp iocontrol.0.emc-enable-in 1```          # Setting the LinuxCNC enable signal
-.     
-.         
-.    
-AXIS X / joint.0 / cia402.0 / slave.1```
-.       
-.       
-.        
-
+<br>     
+<br>        
+<br>    
+AXIS X / joint.0 / cia402.0 / slave.1```     
+<br>
 ```setp cia402.0.pos-scale 1677721.6```          # Setting the X-axis position scaling factor
 
 ```setp cia402.0.velo-scale 1677721.6```          # Setting the X-axis velocity scaling factor
@@ -94,10 +91,10 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 ```setp x-pid.Dgain 0```          # Disabling the derivative PID gain
 
 ```setp x-pid.maxoutput 4000```          # Setting the maximum PID output limit
-.        
-.       
-.       
-.     
+<br>       
+<br>       
+<br>       
+<br>    
 
 
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
@@ -115,9 +112,9 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 `net X-is-custom-homing cia402.0.stat-homing => joint.0.is-custom-homing` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing status signal
 
 `net X-custom-home-done cia402.0.stat-homed => joint.0.custom-homing-finished` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing completion signal
-.     
-.    
-.       
+<br>     
+<br>    
+<br>       
 `net X-control-word cia402.0.controlword => lcec.0.1.control-word` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the CIA402 control word to EtherCAT
 
 `net X-opmode cia402.0.opmode => lcec.0.1.opmode` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the drive operation mode to EtherCAT
@@ -131,7 +128,9 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 `net X-opmode-display cia402.0.opmode-display => lcec.0.1.opmode-display` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the displayed operation mode to EtherCAT
 
 `net X-status-word lcec.0.1.status-word => cia402.0.statusword` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the EtherCAT status word to CIA402
-
+<br>
+<br>
+<br>
 **Different NET connections for CSP mode**
 
 The following NET connections are used in CSP mode:
@@ -156,9 +155,9 @@ The following NET connections are used in CSP mode:
 <br>
 <br>
 <br>
----
+
 ## INI File Explanation
----
+
 
 
 
