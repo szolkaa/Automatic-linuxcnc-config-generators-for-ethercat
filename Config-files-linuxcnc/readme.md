@@ -96,9 +96,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 ```setp x-pid.Dgain 0```          # Disabling the derivative PID gain
 
 ```setp x-pid.maxoutput 4000```          # Setting the maximum PID output limit
-<br>       
-<br>       
-<br> 
+
 ### 6. LinuxCNC Motion and Homing Connections
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
@@ -115,9 +113,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 `net X-is-custom-homing cia402.0.stat-homing => joint.0.is-custom-homing` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing status signal
 
 `net X-custom-home-done cia402.0.stat-homed => joint.0.custom-homing-finished` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing completion signal
-<br>     
-<br>    
-<br> 
+
 ### 7. CIA402 and EtherCAT Connections
 `net X-control-word cia402.0.controlword => lcec.0.1.control-word` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the CIA402 control word to EtherCAT
 
@@ -132,9 +128,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 `net X-opmode-display cia402.0.opmode-display => lcec.0.1.opmode-display` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the displayed operation mode to EtherCAT
 
 `net X-status-word lcec.0.1.status-word => cia402.0.statusword` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the EtherCAT status word to CIA402
-<br>
-<br>
-<br>
+
 ### 8. Different NET Connections for CSP Mode
 
 The following NET connections are used in CSP mode:
