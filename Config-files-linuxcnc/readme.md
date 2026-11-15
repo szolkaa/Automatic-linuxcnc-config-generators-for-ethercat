@@ -34,8 +34,12 @@ or might connect servodives to linux and compere index numbers
 The ```halPin``` attribute (e.g., halPin="control-word") ```is exclusively used to link ethercat-conf.xml with the HAL file```.
    
 Therefore, its value should not be modified becouse must ```match``` the corresponding current signal name in the HAL configuration.          
-
-`
+     
+.       
+.     
+.     
+.      
+.       
 Hal file expplanation
 
 
