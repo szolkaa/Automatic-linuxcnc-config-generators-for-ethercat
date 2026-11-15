@@ -156,7 +156,9 @@ The following NET connections are used in CSP mode:
 <br>
 <br>
 <br>
-INi file expenation 
+---
+## INI File Explanation
+---
 
 
 
