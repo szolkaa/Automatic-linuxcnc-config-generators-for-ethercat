@@ -76,9 +76,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br> 
 ### 3. LinuxCNC Enable Configuration
 ```setp iocontrol.0.emc-enable-in 1```          # Setting the LinuxCNC enable signal
-<br>     
-<br>        
-<br> 
+
 ### 4. Axis X Drive Configuration
 AXIS X / joint.0 / cia402.0 / slave.1```     
 <br>
