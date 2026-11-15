@@ -40,19 +40,19 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 .     
 .      
 .       
-Hal file expplanation
+```Hal file expplanation```
 
 
 
-loadrt [KINS]KINEMATICS                                                        # Loading the machine kinematics module
+```loadrt [KINS]KINEMATICS```                                                        # Loading the machine kinematics module
 
-loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS  # Loading the motion control module and setting the servo period and number of joints
+```loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS```  # Loading the motion control module and setting the servo period and number of joints
 
-loadusr -W lcec_conf ethercat-conf.xml          # Starting EtherCAT configuration from the XML file
+```loadusr -W lcec_conf ethercat-conf.xml```          # Starting EtherCAT configuration from the XML file
 
-loadrt cia402 count=1          # Loading one CIA402 drive module
+```loadrt cia402 count=1```          # Loading one CIA402 drive module
 
-loadrt lcec          # Loading the EtherCAT communication module
+```loadrt lcec```          # Loading the EtherCAT communication module
 
 loadrt pid names=x-pid          # Loading one PID controller for the X axis
 
