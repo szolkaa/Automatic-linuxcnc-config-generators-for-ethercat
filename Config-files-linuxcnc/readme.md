@@ -35,7 +35,7 @@ The ```halPin``` attribute (e.g., halPin="control-word") ```is exclusively used 
    
 Therefore, its value should not be modified becouse must ```match``` the corresponding current signal name in the HAL configuration.          
 
-
+```
 Hal file expplanation
 
 loadrt [KINS]KINEMATICS                                                               # Loading the machine kinematics module               
@@ -55,7 +55,7 @@ addf lcec.write-all servo-thread                                                
           
 setp iocontrol.0.emc-enable-in 1                                                      # Setting the LinuxCNC enable signal       
           
-# -------- AXIS X / joint.0 / cia402.0 / slave.1 --------         
+------- AXIS X / joint.0 / cia402.0 / slave.1 --------         
            
 setp cia402.0.pos-scale 1677721.6                                                     # Setting the X-axis position scaling factor     
 setp cia402.0.velo-scale 1677721.6                                                    # Setting the X-axis velocity scaling factor        
@@ -83,7 +83,7 @@ net X-actual-position lcec.0.1.actual-position => cia402.0.drv-actual-position  
 net X-actual-velocity lcec.0.1.actual-velocity => cia402.0.drv-actual-velocity        # Connecting actual velocity feedback from EtherCAT to CIA402         
 net X-opmode-display cia402.0.opmode-display => lcec.0.1.opmode-display               # Connecting the displayed operation mode to EtherCAT       
 net X-status-word lcec.0.1.status-word => cia402.0.statusword                         # Connecting the EtherCAT status word to CIA402       
-        
+```        
         
        
 **Different NET connections for CSP mode**      
