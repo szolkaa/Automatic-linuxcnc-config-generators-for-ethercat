@@ -40,7 +40,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>    
 <br>      
 <br>     
-```Hal file expplanation```
+##Hal file expplanation        
 
 
 
@@ -93,10 +93,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 ```setp x-pid.maxoutput 4000```          # Setting the maximum PID output limit
 <br>       
 <br>       
-<br>       
-<br>    
-
-
+<br>           
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
 `net X-pos-fb cia402.0.pos-fb => joint.0.motor-pos-fb x-pid.feedback` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting actual position feedback to LinuxCNC and PID
