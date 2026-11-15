@@ -45,7 +45,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>
 <br>
 
-### 1. Module Loading and Configuration
+**Module Loading and Configuration**
 ```loadrt [KINS]KINEMATICS```                                                        # Loading the machine kinematics module
 
 ```loadrt [EMCMOT]EMCMOT servo_period_nsec=[EMCMOT]SERVO_PERIOD num_joints=[KINS]JOINTS```  # Loading the motion control module and setting the servo period and number of joints
@@ -58,7 +58,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 
 ```loadrt pid names=x-pid```          # Loading one PID controller for the X axis
 <br>
-### 2. Servo Thread Configuration
+**Servo Thread Configuration**
 
 ```addf lcec.read-all servo-thread```          # Adding EtherCAT data reading to the servo thread
 
@@ -74,10 +74,10 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 
 ```addf lcec.write-all servo-thread```          # Adding EtherCAT data transmission to the servo thread
 <br> 
-### 3. LinuxCNC Enable Configuration
+**LinuxCNC Enable Configuration**
 ```setp iocontrol.0.emc-enable-in 1```          # Setting the LinuxCNC enable signal
 
-### 4. Axis X Drive Configuration
+**4. Axis X Drive Configuration**
 AXIS X / joint.0 / cia402.0 / slave.1```     
 <br>
 ```setp cia402.0.pos-scale 1677721.6```          # Setting the X-axis position scaling factor
@@ -88,7 +88,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 
 ```setp x-pid.Pgain 10```          # Setting the proportional PID gain
 <br> 
-### 5. PID Controller Configuration
+**PID Controller Configuration**
 ```setp x-pid.FF1 1```          # Setting the velocity feed-forward coefficient
 
 ```setp x-pid.Igain 0```          # Disabling the integral PID gain
@@ -97,7 +97,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 
 ```setp x-pid.maxoutput 4000```          # Setting the maximum PID output limit
 
-### 6. LinuxCNC Motion and Homing Connections
+**LinuxCNC Motion and Homing Connections**
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
 `net X-pos-fb cia402.0.pos-fb => joint.0.motor-pos-fb x-pid.feedback` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting actual position feedback to LinuxCNC and PID
@@ -114,7 +114,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 
 `net X-custom-home-done cia402.0.stat-homed => joint.0.custom-homing-finished` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing completion signal
 
-### 7. CIA402 and EtherCAT Connections
+**CIA402 and EtherCAT Connections**
 `net X-control-word cia402.0.controlword => lcec.0.1.control-word` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the CIA402 control word to EtherCAT
 
 `net X-opmode cia402.0.opmode => lcec.0.1.opmode` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the drive operation mode to EtherCAT
@@ -129,7 +129,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 
 `net X-status-word lcec.0.1.status-word => cia402.0.statusword` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the EtherCAT status word to CIA402
 
-### 8. Different NET Connections for CSP Mode
+**Different NET Connections for CSP Mode**
 
 The following NET connections are used in CSP mode:
 
