@@ -151,8 +151,11 @@ The following NET connections are used in CSP mode:
 `net X-target-velocity cia402.0.drv-target-velocity => lcec.0.1.target-velocity` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the target velocity to the EtherCAT drive
 
 `net X-actual-position lcec.0.1.actual-position => cia402.0.drv-actual-position` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the actual position feedback from EtherCAT to CIA402
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
 INi file expenation 
 
 
