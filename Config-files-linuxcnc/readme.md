@@ -54,41 +54,41 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 
 ```loadrt lcec```          # Loading the EtherCAT communication module
 
-loadrt pid names=x-pid          # Loading one PID controller for the X axis
+```loadrt pid names=x-pid```          # Loading one PID controller for the X axis
 
-addf lcec.read-all servo-thread          # Adding EtherCAT data reading to the servo thread
+```addf lcec.read-all servo-thread```          # Adding EtherCAT data reading to the servo thread
 
-addf cia402.0.read-all servo-thread          # Adding X-axis drive data reading to the servo thread
+```addf cia402.0.read-all servo-thread```          # Adding X-axis drive data reading to the servo thread
 
-addf motion-command-handler servo-thread          # Adding motion command handling to the servo thread
+```addf motion-command-handler servo-thread```          # Adding motion command handling to the servo thread
 
-addf motion-controller servo-thread          # Adding motion control calculations to the servo thread
+```addf motion-controller servo-thread```          # Adding motion control calculations to the servo thread
 
-addf x-pid.do-pid-calcs servo-thread          # Adding X-axis PID calculations to the servo thread
+```addf x-pid.do-pid-calcs servo-thread```          # Adding X-axis PID calculations to the servo thread
 
-addf cia402.0.write-all servo-thread          # Adding X-axis drive command transmission to the servo thread
+```addf cia402.0.write-all servo-thread```          # Adding X-axis drive command transmission to the servo thread
 
-addf lcec.write-all servo-thread          # Adding EtherCAT data transmission to the servo thread
+```addf lcec.write-all servo-thread```          # Adding EtherCAT data transmission to the servo thread
 
-setp iocontrol.0.emc-enable-in 1          # Setting the LinuxCNC enable signal
+```setp iocontrol.0.emc-enable-in 1```          # Setting the LinuxCNC enable signal
 
-AXIS X / joint.0 / cia402.0 / slave.1
+AXIS X / joint.0 / cia402.0 / slave.1```
 
-setp cia402.0.pos-scale 1677721.6          # Setting the X-axis position scaling factor
+```setp cia402.0.pos-scale 1677721.6```          # Setting the X-axis position scaling factor
 
-setp cia402.0.velo-scale 1677721.6          # Setting the X-axis velocity scaling factor
+```setp cia402.0.velo-scale 1677721.6```          # Setting the X-axis velocity scaling factor
 
-setp cia402.0.csp-mode 0          # Setting the CSV mode parameter
+```setp cia402.0.csp-mode 0```          # Setting the CSV mode parameter
 
-setp x-pid.Pgain 10          # Setting the proportional PID gain
+```setp x-pid.Pgain 10```          # Setting the proportional PID gain
 
-setp x-pid.FF1 1          # Setting the velocity feed-forward coefficient
+```setp x-pid.FF1 1```          # Setting the velocity feed-forward coefficient
 
-setp x-pid.Igain 0          # Disabling the integral PID gain
+```setp x-pid.Igain 0```          # Disabling the integral PID gain
 
-setp x-pid.Dgain 0          # Disabling the derivative PID gain
+```setp x-pid.Dgain 0```          # Disabling the derivative PID gain
 
-setp x-pid.maxoutput 4000          # Setting the maximum PID output limit
+```setp x-pid.maxoutput 4000```          # Setting the maximum PID output limit
 
 
 
