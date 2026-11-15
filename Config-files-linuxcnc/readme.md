@@ -61,6 +61,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>
 **Servo Thread Configuration**
 <br>
+<br>
 
 ```addf lcec.read-all servo-thread```          # Adding EtherCAT data reading to the servo thread
 
@@ -78,9 +79,11 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br> 
 **LinuxCNC Enable Configuration**
 <br>
+<br>
 ```setp iocontrol.0.emc-enable-in 1```          # Setting the LinuxCNC enable signal
 <br>
-**4. Axis X Drive Configuration**
+**Axis X Drive Configuration**
+<br>
 <br>
 AXIS X / joint.0 / cia402.0 / slave.1```     
 <br>
@@ -94,6 +97,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 <br> 
 **PID Controller Configuration**
 <br>
+<br>
 ```setp x-pid.FF1 1```          # Setting the velocity feed-forward coefficient
 
 ```setp x-pid.Igain 0```          # Disabling the integral PID gain
@@ -103,6 +107,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 ```setp x-pid.maxoutput 4000```          # Setting the maximum PID output limit
 <br>
 **LinuxCNC Motion and Homing Connections**
+<br>
 <br>
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
@@ -122,6 +127,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 <br>
 **CIA402 and EtherCAT Connections**
 <br>
+<br>
 `net X-control-word cia402.0.controlword => lcec.0.1.control-word` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the CIA402 control word to EtherCAT
 
 `net X-opmode cia402.0.opmode => lcec.0.1.opmode` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the drive operation mode to EtherCAT
@@ -138,6 +144,7 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 <br>
 **Different NET Connections for CSP Mode**
 <br>
+<br>
 The following NET connections are used in CSP mode:
 
 `net X-pos-cmd joint.0.motor-pos-cmd => cia402.0.pos-cmd` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the CIA402 position command
@@ -147,6 +154,7 @@ The following NET connections are used in CSP mode:
 `net X-actual-velocity cia402.0.drv-actual-velocity => lcec.0.1.actual-velocity` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the actual velocity signal to EtherCAT
 <br>
 **They replace the following NET connections used in the previous configuration:**
+<br>
 <br>
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
