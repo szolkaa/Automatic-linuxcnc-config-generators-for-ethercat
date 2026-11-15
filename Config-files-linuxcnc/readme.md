@@ -71,8 +71,13 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 ```addf lcec.write-all servo-thread```          # Adding EtherCAT data transmission to the servo thread
 
 ```setp iocontrol.0.emc-enable-in 1```          # Setting the LinuxCNC enable signal
-
+.     
+.         
+.    
 AXIS X / joint.0 / cia402.0 / slave.1```
+.       
+.       
+.        
 
 ```setp cia402.0.pos-scale 1677721.6```          # Setting the X-axis position scaling factor
 
@@ -89,7 +94,10 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 ```setp x-pid.Dgain 0```          # Disabling the derivative PID gain
 
 ```setp x-pid.maxoutput 4000```          # Setting the maximum PID output limit
-
+.        
+.       
+.       
+.     
 
 
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
@@ -107,7 +115,9 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 `net X-is-custom-homing cia402.0.stat-homing => joint.0.is-custom-homing` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing status signal
 
 `net X-custom-home-done cia402.0.stat-homed => joint.0.custom-homing-finished` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the homing completion signal
-
+.     
+.    
+.       
 `net X-control-word cia402.0.controlword => lcec.0.1.control-word` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the CIA402 control word to EtherCAT
 
 `net X-opmode cia402.0.opmode => lcec.0.1.opmode` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the drive operation mode to EtherCAT
