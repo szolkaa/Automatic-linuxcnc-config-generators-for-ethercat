@@ -92,11 +92,13 @@ AXIS X / joint.0 / cia402.0 / slave.1```
 
 ```setp cia402.0.csp-mode 0```          # Setting the CSV mode parameter
 
-```setp x-pid.Pgain 10```          # Setting the proportional PID gain
 <br>
 <br>
 **PID Controller Configuration**
 <br>
+
+```setp x-pid.Pgain 10```          # Setting the proportional PID gain    
+       
 ```setp x-pid.FF1 1```          # Setting the velocity feed-forward coefficient
 
 ```setp x-pid.Igain 0```          # Disabling the integral PID gain
