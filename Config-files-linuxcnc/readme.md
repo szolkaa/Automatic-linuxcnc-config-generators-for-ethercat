@@ -84,7 +84,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>
 **Axis X Drive Configuration**
 <br>
-AXIS X / joint.0 / cia402.0 / slave.1```     
+```AXIS X / joint.0 / cia402.0 / slave.1```     
 <br>
 ```setp cia402.0.pos-scale 1677721.6```          # Setting the X-axis position scaling factor
 
