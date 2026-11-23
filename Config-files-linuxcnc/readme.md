@@ -158,7 +158,7 @@ The following NET connections are used in CSP mode:
 `net X-actual-velocity cia402.0.drv-actual-velocity => lcec.0.1.actual-velocity` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the actual velocity signal to EtherCAT
 <br>
 <br>
-**They replace the following NET connections used in the previous configuration:**
+**They replace the following NET connections used in the previous CSV configuration:**
 <br>
 `net X-pos-cmd joint.0.motor-pos-cmd => x-pid.command` &nbsp;&nbsp;&nbsp;&nbsp; # Connecting the commanded position to the PID input
 
