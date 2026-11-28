@@ -565,8 +565,107 @@ For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis po
 <details>
 <summary id="11-ethercat-solutions">11. Some EtherCAT Solutions</summary>
 
-11.1 Operating State  
-The master must be active before the slaves, because in EtherCAT the master performs the role of synchronization and managing the communication cycle. The slaves cannot initiate transmission or synchronize with the bus on their own; they wait until the master starts the data cycle and distributes the timing. If the master is not active, the slaves will be in a waiting or error state, because they will not receive the reference clock or control commands. In many cases, re-initialization will not occur. Therefore, powering on the slaves or connecting the cable with already powered slaves should properly happen after starting the LinuxCNC GUI.
+11.1 Operating State 
+**Solving the problem related to the preop+error state during GUI startup and failure to enter Operational mode.**       
+       
+After connecting the LC10E drive before starting LinuxCNC, the drive did not transition to OP but remained in PREOP or SAFEOP+ERROR. The logs showed, among others:       
+- Timeout after 10000 ms while setting state OP,            
+- 0x001A "Synchronization error" and 0x001B "Sync manager watchdog",        
+- Invalid data size 2 at uploading SDO 0x1702:01 and 0x1B02:01.         
+When the drive was switched on after LinuxCNC had started, it transitioned to OP without any problems. The same drive worked correctly with a standard PLC.       
+       
+**2. Background: What is SII?**       
+       
+SII (Slave Information Interface) is data stored in the EEPROM memory of every EtherCAT device, a kind of "business card" of the drive. The IGH Master can read it immediately        after the bus starts, before it begins configuring the device. It contains:           
+- Identification: Vendor ID (0x766 = Lichuan), Product code (0x402), revision, name ("LC10E_V1.04").       
+- Mailbox configuration: addresses and sizes (RX 0x1000/128, TX 0x1100/128) and protocol (CoE).      
+- Sync Managers: addresses, lengths and modes of SM0–SM3 (SM0/SM1 are used for the mailbox, SM2 for data from the master to the drive, SM3 for data from the drive to the master).      
+- PDO list: which PDOs the drive has, how many entries they contain, and which SM they are assigned to.       
+- Texts: PDO names and device name.          
+       
+      
+**Mailbox SM0/SM1:**       
+- Reading servo drive parameters.       
+- Changing drive settings.     
+- Configuring PDO mapping.      
+- Reading errors and diagnostic information.      
+- Sending commands using CoE (SDO).       
+      
+SII roughly corresponds to what the manufacturer describes in the ESI (XML) file, except that it is stored in the EEPROM inside the device itself, so the master does not need   any file. IgH uses the SII to build the default drive configuration.        
+     
+3. **Root Cause**      
+An error in the drive's SII. The manufacturer assigned PDOs 0x1B01–0x1B04 (TxPDO) and 0x1701–0x1705 (RxPDO) to SM0, i.e. to the mailbox, to which PDOs cannot be assigned.       
+
+**Sequence of Events:**        
+         
+When the drive is connected at startup, IgH scans it and takes these PDOs from the SII as the default configuration.      
+      
+Reading their mapping via CoE did not complete successfully: the drive returns only 2 bytes in objects 0x1702:01 and 0x1B02:01 instead of the 4 bytes required by the standard.   IgH rejects this response, so the PDO list from the SII remains in use.          
+       
+The master sums all these PDOs in SM0 and builds a 196 B domain (LWR type, WC 1) instead of the correct 18 B (7 B in SM2 + 11 B in SM3, LRW type, WC 3).       
+          
+The drive does not receive the correct SM2/SM3 configuration, remains in SAFEOP, and then reports synchronization and watchdog errors.       
+       
+When the drive was not present at startup, the master did not scan it and used the configuration from the XML file instead. As a result, the domain had 18 B and the drive      successfully transitioned to OP.      
+     
+Differences between a hardware PLC (Programmable Logic Controller) and LinuxCNC:     
+       
+A hardware PLC works because it configures PDOs via CoE (0x1C12/0x1C13) and does not use the PDO list from the SII.     
+       
+CANopen over EtherCAT (CoE) is a communication mechanism that, unlike the approach used by LinuxCNC, allows a PLC to read and write EtherCAT device parameters using objects     stored in the so-called Object Dictionary.       
+     
+When starting up a device, the PLC can independently configure which data will be exchanged between the controller and the device.     
+       
+**Solution:**       
+Empty SM0 and SM1 entries were added for each slave in ethercat-conf.xml to clear the incorrect assignment on the master side:       
+```xml
+  <syncManager idx="0" dir="out"/>
+  <syncManager idx="1" dir="in"/>
+```    
+In the following way:
+```xml
+<slave idx="1" type="generic" vid="00000766" pid="00000402" configPdos="true">
+  <dcConf assignActivate="0x0300" sync0Cycle="*1" sync0Shift="0"/>
+    <syncManager idx="0" dir="out"/>
+  <syncManager idx="1" dir="in"/>
+  <syncManager idx="2" dir="out"> ... PDO 0x1600 ... </syncManager>
+  <syncManager idx="3" dir="in"> ... PDO 0x1A00 ... </syncManager>
+</slave>
+```
+
+After this change, the drive transitions to OP even when it is connected before LinuxCNC starts.       
+         
+Key Commands:        
+```ethercat domains -v``` It showed a 196 B domain and SM0 as an output.        
+```ethercat pdos -p 1``` It showed nine "additional" PDOs in SM0.             
+Read SII (```ethercat sii_read -p 1```) And the category analysis script confirmed that PDOs 0x1B01–0x1B04 and 0x1701–0x1705 are assigned to SM0 in the SII.        
+       
+     
+```ethercat sii_read -p 1 > /tmp/sii.bin
+python3 - <<'EOF'
+import struct
+d = open('/tmp/sii.bin','rb').read()
+p = 0x80
+while p + 4 <= len(d):
+    t, n = struct.unpack_from('<HH', d, p)
+    if t == 0xFFFF: break
+    body = d[p+4:p+4+2*n]
+    if t == 0x29:
+        for i in range(0, len(body), 8):
+            a, l, c, s, e, ty = struct.unpack_from('<HHBBBB', body, i)
+            print(f"SyncM{i//8}: addr 0x{a:04x} len {l} ctrl 0x{c:02x} en {e} type {ty}")
+    elif t in (0x32, 0x33):
+        q = 0
+        while q + 8 <= len(body):
+            idx, ne, sm = struct.unpack_from('<HBB', body, q)
+            print(f"{'Tx' if t==0x32 else 'Rx'}PDO 0x{idx:04x}: SM{sm}, {ne} entries")
+            q += 8 + 8*ne
+    else:
+        print(f"category 0x{t:04x}, {n} words")
+    p += 4 + 2*n
+EOF
+```
+
       
        
             
