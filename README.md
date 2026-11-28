@@ -733,7 +733,7 @@ For reasons that are still unclear, in CSP mode, the following error increases p
 This suggests that there may be another factor in the control system overriding or limiting the effect of the target position and speed feedforward, preventing them from functioning as expected.       
 Until this issue is resolved, CSV mode is recommended.    
           
-Therefore, the FERROR parameters must be configured for each axis in the LinuxCNC INI file.         
+FERROR parameters must be configured for each axis in the LinuxCNC INI file.         
 Since Lichuan servo drives do not provide STO (Safe Torque Off), the following error limit can serve as an additional software-based collision protection mechanism.       
 If a collision occurs and the following error exceeds the configured limit,         
 LinuxCNC will trigger a Following Error fault and disable the servo drives through the amplifier enable signals,       
@@ -741,7 +741,8 @@ eg.
 ```FERROR = 0.2```      
 ```MIN_FERROR = 0.2```                
        
-      the following parameters can still be configured manually:       
+the following parameters can still be configured manually:          
+      
 ```P08.15``` – Load Inertia Ratio      
 Default value: 1     
 safe value: 1.5    
