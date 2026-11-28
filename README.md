@@ -565,8 +565,7 @@ For each axis, select touch off P1 (G54)=0. This assigns the current XYZ axis po
 <details>
 <summary id="11-ethercat-solutions">11. Some EtherCAT Solutions</summary>
 
-11.1 Operating State 
-**Solving the problem related to the preop+error state during GUI startup and failure to enter Operational mode.**       
+11.1**Solving the problem related to the preop+error state during GUI startup and failure to enter Operational mode.**       
        
 After connecting the LC10E drive before starting LinuxCNC, the drive did not transition to OP but remained in PREOP or SAFEOP+ERROR. The logs showed, among others:       
 - Timeout after 10000 ms while setting state OP,            
