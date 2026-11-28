@@ -39,7 +39,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>    
 <br> 
          
-*for ethercat-conf.xml files has been added two additional lines for each sleve to clear mailbox SM0/SM1 that coused in lichuan preop-error state. for different drivers this lines are probably not neccesery.
+**To the XML generator and the ethercat-conf.xml file, two additional lines have been added for each slave to clear the SM0/SM1 mailboxes that caused Lichuan to enter the PRE-OP error state. For different drives, these lines are probably not necessary.
 ```
 <syncManager idx="0" dir="out"/>
 <syncManager idx="1" dir="in"/>
