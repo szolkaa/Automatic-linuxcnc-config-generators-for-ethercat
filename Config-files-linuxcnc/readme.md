@@ -37,9 +37,42 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
      
 <br>     
 <br>    
-<br>    
+<br> 
+
+**etherecat-conf.xml explanation** 
+
+<br> 
+<br> 
+
+<masters> <!-- Main configuration element for the EtherCAT bus -->
+ <master idx="0" appTimePeriod="1000000" refClockSyncCycles="1"> <!-- EtherCAT master definition: idx – master index, appTimePeriod – application cycle time in ns (1 ms), refClockSyncCycles – number of reference clock synchronization cycles -->
+  <slave idx="0" type="EK1100"/> <!-- First slave device: Beckhoff EK1100 EtherCAT coupler -->
+  <slave idx="1" type="generic" vid="00000766" pid="00000402" configPdos="true"> <!-- Second slave device: generic EtherCAT device, vid – vendor ID, pid – product ID, configPdos – enables manual PDO configuration -->
+   <dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0"/> <!-- Distributed Clocks configuration: assignActivate – DC activation value, sync0Cycle – SYNC0 cycle equal to one application cycle, sync0Shift – SYNC0 time shift set to 0 -->
+   <syncManager idx="2" dir="out"> <!-- Sync Manager 2: output channel, data transmitted from the master to the slave -->
+     <pdo idx="1600"> <!-- PDO 0x1600: output process data mapping -->
+       <pdoEntry idx="6040" subIdx="00" bitLen="16" halPin="control-word" halType="u32"/> <!-- 0x6040 Control Word: 16-bit control word used to control the drive, HAL pin – control-word -->
+       <pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/> <!-- 0x607A Target Position: 32-bit commanded position of the drive, HAL pin – target-position -->
+       <pdoEntry idx="6060" subIdx="00" bitLen="8" halPin="opmode" halType="s32"/> <!-- 0x6060 Modes of Operation: 8-bit value defining the requested operating mode, HAL pin – opmode -->
+       </pdo>
+     </syncManager>
+   <syncManager idx="3" dir="in"> <!-- Sync Manager 3: input channel, data transmitted from the slave to the master -->
+     <pdo idx="1A00"> <!-- PDO 0x1A00: input process data mapping -->
+       <pdoEntry idx="6041" subIdx="00" bitLen="16" halPin="status-word" halType="u32"/> <!-- 0x6041 Status Word: 16-bit status word providing information about the drive state, HAL pin – status-word -->
+       <pdoEntry idx="6064" subIdx="00" bitLen="32" halPin="actual-position" halType="s32"/> <!-- 0x6064 Position Actual Value: 32-bit actual position of the drive, HAL pin – actual-position -->
+       <pdoEntry idx="606C" subIdx="00" bitLen="32" halPin="actual-velocity" halType="s32"/> <!-- 0x606C Velocity Actual Value: 32-bit actual velocity of the drive, HAL pin – actual-velocity -->
+       <pdoEntry idx="6061" subIdx="00" bitLen="8" halPin="opmode-display" halType="s32"/> <!-- 0x6061 Modes of Operation Display: 8-bit value indicating the currently active operating mode, HAL pin – opmode-display -->
+     </pdo>
+     </syncManager>
 <br>      
-<br>     
+<br> 
+halType="s32" – 32-bit signed integer.
+halType="u32" – 32-bit unsigned integer.
+bitLen defines the actual number of bits transmitted for each PDO entry.
+br>
+br>
+For CSV (Cyclic Synchronous Velocity) mode, add the following PDO entry to the output Sync Manager (idx="2"), inside PDO 0x1600:
+<pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/> <!-- 0x60FF Target Velocity: 32-bit signed value defining the commanded velocity of the drive in CSV mode, HAL pin – target-velocity -->
 
 **HAL File Explanation**
 <br>
