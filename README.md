@@ -874,7 +874,7 @@ Recommended range for ball-screw-driven systems: 15–20
 * note that the parser in the XML generator has been adjusted only for Lichuan ESI.xml.
 The HAL and INI generators can still be used with a fixed version of ethercat-conf.xml that has been manually adjusted beforehand.
          
-*to XML generetor file has been added two additional lines for each sleve to clear mailbox SM0/SM1 that coused in lichuan preop-error state. for different drivers this lines are probably not neccesery.
+*to XML generetor and ethercat-conf.xml file has been added two additional lines for each sleve to clear mailbox SM0/SM1 that coused in lichuan preop-error state. for different drivers this lines are probably not neccesery.
 ```
 <syncManager idx="0" dir="out"/>
 <syncManager idx="1" dir="in"/>
