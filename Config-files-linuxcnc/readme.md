@@ -38,7 +38,12 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 <br>     
 <br>    
 <br> 
-
+         
+*for ethercat-conf.xml files has been added two additional lines for each sleve to clear mailbox SM0/SM1 that coused in lichuan preop-error state. for different drivers this lines are probably not neccesery.
+```
+<syncManager idx="0" dir="out"/>
+<syncManager idx="1" dir="in"/>
+```
 **etherecat-conf.xml explanation** 
 
 
@@ -48,7 +53,9 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
   <slave idx="0" type="EK1100"/> <!-- First slave device: Beckhoff EK1100 EtherCAT coupler -->
   <slave idx="1" type="generic" vid="00000766" pid="00000402" configPdos="true"> <!-- Second slave device: generic EtherCAT device, vid – vendor ID, pid – product ID, configPdos – enables manual PDO configuration -->
    <dcConf assignActivate="300" sync0Cycle="*1" sync0Shift="0"/> <!-- Distributed Clocks configuration: assignActivate – DC activation value, sync0Cycle – SYNC0 cycle equal to one application cycle, sync0Shift – SYNC0 time shift set to 0 -->
-   <syncManager idx="2" dir="out"> <!-- Sync Manager 2: output channel, data transmitted from the master to the slave -->
+    <syncManager idx="0" dir="out"/> <!-- Sync Manager 0: Empty output channel – no process data is transmitted; used to clear/reset the channel -->
+    <syncManager idx="1" dir="in"/> <!-- Sync Manager 1: Empty input channel – no process data is received; used to clear/reset the channel -->
+    <syncManager idx="2" dir="out"> <!-- Sync Manager 2: output channel, data transmitted from the master to the slave -->
      <pdo idx="1600"> <!-- PDO 0x1600: output process data mapping -->
        <pdoEntry idx="6040" subIdx="00" bitLen="16" halPin="control-word" halType="u32"/> <!-- 0x6040 Control Word: 16-bit control word used to control the drive, HAL pin – control-word -->
        <pdoEntry idx="607A" subIdx="00" bitLen="32" halPin="target-position" halType="s32"/> <!-- 0x607A Target Position: 32-bit commanded position of the drive, HAL pin – target-position -->
