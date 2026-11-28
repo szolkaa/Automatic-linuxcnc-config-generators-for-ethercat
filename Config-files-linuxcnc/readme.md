@@ -41,9 +41,8 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
 
 **etherecat-conf.xml explanation** 
 
-<br> 
-<br> 
 
+```xml
 <masters> <!-- Main configuration element for the EtherCAT bus -->
  <master idx="0" appTimePeriod="1000000" refClockSyncCycles="1"> <!-- EtherCAT master definition: idx – master index, appTimePeriod – application cycle time in ns (1 ms), refClockSyncCycles – number of reference clock synchronization cycles -->
   <slave idx="0" type="EK1100"/> <!-- First slave device: Beckhoff EK1100 EtherCAT coupler -->
@@ -64,15 +63,23 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
        <pdoEntry idx="6061" subIdx="00" bitLen="8" halPin="opmode-display" halType="s32"/> <!-- 0x6061 Modes of Operation Display: 8-bit value indicating the currently active operating mode, HAL pin – opmode-display -->
      </pdo>
      </syncManager>
-<br>      
-<br> 
+```
+
+## HAL data types
+
+```text
 halType="s32" – 32-bit signed integer.
 halType="u32" – 32-bit unsigned integer.
 bitLen defines the actual number of bits transmitted for each PDO entry.
-br>
-br>
-For CSV (Cyclic Synchronous Velocity) mode, add the following PDO entry to the output Sync Manager (idx="2"), inside PDO 0x1600:
+```
+
+## CSV mode (Cyclic Synchronous Velocity)
+
+For CSV (Cyclic Synchronous Velocity) mode, add the following PDO entry to the output Sync Manager (`idx="2"`), inside PDO `0x1600`:
+
+```xml
 <pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/> <!-- 0x60FF Target Velocity: 32-bit signed value defining the commanded velocity of the drive in CSV mode, HAL pin – target-velocity -->
+```
 
 **HAL File Explanation**
 <br>
