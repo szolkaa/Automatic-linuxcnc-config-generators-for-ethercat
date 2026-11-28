@@ -65,7 +65,7 @@ Therefore, its value should not be modified becouse must ```match``` the corresp
      </syncManager>
 ```
 
-## HAL data types
+**HAL data types**
 
 ```text
 halType="s32" – 32-bit signed integer.
@@ -73,9 +73,7 @@ halType="u32" – 32-bit unsigned integer.
 bitLen defines the actual number of bits transmitted for each PDO entry.
 ```
 
-## CSV mode (Cyclic Synchronous Velocity)
-
-For CSV (Cyclic Synchronous Velocity) mode, add the following PDO entry to the output Sync Manager (`idx="2"`), inside PDO `0x1600`:
+**for CSV mode (Cyclic Synchronous Velocity)**
 
 ```xml
 <pdoEntry idx="60FF" subIdx="00" bitLen="32" halPin="target-velocity" halType="s32"/> <!-- 0x60FF Target Velocity: 32-bit signed value defining the commanded velocity of the drive in CSV mode, HAL pin – target-velocity -->
