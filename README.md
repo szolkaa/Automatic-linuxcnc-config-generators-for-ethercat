@@ -22,13 +22,12 @@ Keeps the first output group and the first input PDO, keeps essential PDOs for C
 1.4 Duplicate the slave.   
 Each click duplicates the text </slave... </slave> and increments the slave index in numerical order. 
 ![1.4](images/1.4.png)
-v
 1.5 Save Xml  
          
 *to XML generetor file has been added two additional lines for each sleve to clear mailbox SM0/SM1 that coused in lichuan preop-error state. for different drivers this lines are probably not neccesery.
   ```<syncManager idx="0" dir="out"/>
-  <syncManager idx="1" dir="in"/>```
-
+  <syncManager idx="1" dir="in"/>
+```
 ****    
 **1.6 If the servo drives are manufactured by a company other than Lichuan, it may be possible to use the Lichuan ESI file to create ethercat-conf.xml  then Refer to the manual or ESI file provided by your servo drive manufacturer and compare the corresponding index numbers:   
     
