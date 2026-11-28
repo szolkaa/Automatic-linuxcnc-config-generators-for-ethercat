@@ -731,7 +731,7 @@ After that, you can adjust parameter P09.01 (Group 1 Rigidity Level Selection). 
         
 For reasons that are still unclear, in CSP mode, the following error increases proportionally with velocity, indicating a dynamic lag in the control system.          
 This suggests that there may be another factor in the control system overriding or limiting the effect of the target position and speed feedforward, preventing them from functioning as expected.       
-Until this issue is resolved, CSV mode is recommended.    
+```Until this issue is resolved, CSV mode is recommended.```    
           
 FERROR parameters must be configured for each axis in the LinuxCNC INI file.         
 Since Lichuan servo drives do not provide STO (Safe Torque Off), the following error limit can serve as an additional software-based collision protection mechanism.       
